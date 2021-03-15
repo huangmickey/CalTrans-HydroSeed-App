@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">HydroSeed</string>
+    <string name="calculate">Calculate</string>
+
+    <string-array name="Seeds">
+        <item>White Yarrow</item>
+        <item>Mariposa Blue Wildrye</item>
+        <item>California Poppy</item>
+        <item>California Goldfields</item>
+        <item>Tidytips</item>
+        <item>Bicolor Lupine</item>
+        <item>Sky Lupine</item>
+        <item>Baby Blue Eyes</item>
+        <item>Tomcat Clover</item>
+        <item>Three Weeks Fescue</item>
+    </string-array>
+</resources>
