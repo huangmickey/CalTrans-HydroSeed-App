@@ -31,7 +31,5 @@ public class History extends AppCompatActivity {
                 txt.setVisibility(View.VISIBLE);
             id++;
         }
-
-
     }
 }
