@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     Button button0, button1, button2, button3, button4, button5, button6,
-            button7, button8, button9, button10;
+            button7, button8, button9, button10, buttonC;
     EditText editText;
 
     @Override
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         button8 = (Button) findViewById(R.id.button8);
         button9 = (Button) findViewById(R.id.button9);
         button10 = (Button) findViewById(R.id.button10);
+        buttonC = (Button) findViewById(R.id.buttonC);
         editText = (EditText) findViewById(R.id.acreageSource);
 
         button1.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +113,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 editText.setText(editText.getText() + ".");
+            }
+        });
+
+        buttonC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editText.setText("");
             }
         });
     }
