@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 public class CalculatePage extends AppCompatActivity {
@@ -55,16 +56,21 @@ public class CalculatePage extends AppCompatActivity {
         CalculationObject calculation = new CalculationObject(inputAcres, compostLayer, hydroSeedLayer, hydroMulchLayer);
 
 
-        if(Global.historyList.size() == 5) {
-            Global.historyList.remove(0);
-        } else if(Global.historyList.size() >= 0 && Global.historyList.size() <= 5) {
-            Global.historyList.add(calculation);
+
+
+        if (Global.historyList.size() == 0) {
+            Global.historyList.add(0,calculation);
+            Global.dupe = new LinkedHashSet<>(Global.historyList);
+            Global.historyList2 = new ArrayList<>(Global.dupe);
+        } else if (Global.historyList.size() < Global.historySize) {
+            Global.historyList.add(0,calculation);
+            Global.dupe = new LinkedHashSet<>(Global.historyList);
+            Global.historyList2 = new ArrayList<>(Global.dupe);
         } else {
-            for(CalculationObject calc : Global.historyList) {
-                if(calc.getAcres() == inputAcres) {
-                    break;
-                }
-            }
+            Global.historyList.remove(4);
+            Global.historyList.add(0,calculation);
+            Global.dupe = new LinkedHashSet<>(Global.historyList);
+            Global.historyList2 = new ArrayList<>(Global.dupe);
         }
 
         String acreageAmount = "Results for " + inputAcres + " acres";

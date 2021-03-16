@@ -8,6 +8,7 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class History extends AppCompatActivity {
@@ -18,15 +19,19 @@ public class History extends AppCompatActivity {
         setContentView(R.layout.activity_history);
 
         int id = 0;
-        for(CalculationObject calculation : Global.historyList) {
-            String compostLayer = "You need " + calculation.getCompostLayer() + " cubic yards of compost";
-            String hydroSeedLayer = "You need " + calculation.getHydroSeedLayer() + " lbs of hydro seed";
-            String hydroMuchLayer = "You need " + calculation.getHydroMulchLayer() + "lbs of hydro mulch";
-            String builder = compostLayer + "\n" + hydroSeedLayer + "\n" + hydroMuchLayer;
-            ((TextView)findViewById(R.id.textView3 + id)).setText(builder);
+        for (CalculationObject calculation : Global.historyList2) {
+            String getAcres = "For " + calculation.getAcres() + " acres of land you need: ";
+            String compostLayer = "       " + calculation.getCompostLayer() + " yds³ of Compost";
+            String hydroSeedLayer = "       " + calculation.getHydroSeedLayer() + " lbs of Hydroseed";
+            String hydroMuchLayer = "       " + calculation.getHydroMulchLayer() + " lbs of Hydromulch";
+            String builder = getAcres + "\n" + compostLayer + "\n" + hydroSeedLayer + "\n" + hydroMuchLayer;
+            ((TextView) findViewById(R.id.textView5 - id)).setText(builder);
+            TextView txt = ((TextView) findViewById(R.id.textView5 - id));
+            if ((TextView) findViewById(R.id.textView5 - id) != null)
+                txt.setVisibility(View.VISIBLE);
             id++;
         }
+
+
     }
-
-
 }
