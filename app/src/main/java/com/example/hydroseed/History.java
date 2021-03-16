@@ -13,7 +13,6 @@ import android.widget.TextView;
 public class History extends AppCompatActivity {
 
     @Override
-    //Steven's task
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);

@@ -54,7 +54,7 @@ public class CalculatePage extends AppCompatActivity {
 
         CalculationObject calculation = new CalculationObject(inputAcres, compostLayer, hydroSeedLayer, hydroMulchLayer);
 
-        //Steven's task
+
         if(Global.historyList.size() == 5) {
             Global.historyList.remove(0);
         } else if(Global.historyList.size() >= 0 && Global.historyList.size() <= 5) {
@@ -66,8 +66,6 @@ public class CalculatePage extends AppCompatActivity {
                 }
             }
         }
-
-
 
         String acreageAmount = "Results for " + inputAcres + " acres";
         TextView a = findViewById(R.id.acreage);
