@@ -33,7 +33,7 @@
         android:focusableInTouchMode="false"
         android:hint="Enter acreage"
         android:importantForAutofill="no"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
         android:textIsSelectable="false"
         app:layout_constraintBottom_toTopOf="@+id/calculate"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,8 +1,8 @@
 package com.example.hydroseed;
 
 public class CalculationObject {
-    private double acres;
 
+    private double acres;
     private int compostLayer;
     private int hydroSeedLayer;
     private int hydroMulchLayer;
@@ -12,6 +12,7 @@ public class CalculationObject {
         this.compostLayer = compostLayer;
         this.hydroMulchLayer = hydroMulchLayer;
         this.hydroSeedLayer = hydroSeedLayer;
+
     }
 
     public double getAcres() {
