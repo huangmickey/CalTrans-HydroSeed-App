@@ -35,8 +35,8 @@ public class CalculatePage extends AppCompatActivity {
 
         Intent getAcreage = getIntent();
 
-        double inputAcres = getAcreage.getIntExtra("Acreage", 0);
-
+        double inputAcres = getAcreage.getDoubleExtra("Acreage", 0.0);
+        
         inputAcres = Math.ceil(4 * inputAcres) / 4;
 
         double inputAcresToCubic = inputAcres * ACRE_TO_CY;

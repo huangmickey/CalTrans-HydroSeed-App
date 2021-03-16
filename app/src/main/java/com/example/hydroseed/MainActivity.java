@@ -128,10 +128,10 @@ public class MainActivity extends AppCompatActivity {
 
         EditText acreInput = findViewById(R.id.acreageSource);
         String acres = acreInput.getText().toString();
-        int number = 0;
+        double number = 0;
 
         if(!acres.equals("")) {
-            number = Integer.parseInt(acres);
+            number = Double.parseDouble(acres);
         }
 
         if(number > 0) {
@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
+
         }
 
     }
