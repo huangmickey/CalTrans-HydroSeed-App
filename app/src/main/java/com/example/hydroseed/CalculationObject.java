@@ -5,13 +5,22 @@ public class CalculationObject {
     private double acres;
     private int compostLayer;
     private int hydroSeedLayer;
+    private int lbsOfSeed;
+    private int lbsOfFertilizer;
+    private int lbsOfAdditive;
     private int hydroMulchLayer;
+    private int tanksNeeded;
 
-    public CalculationObject(double acres, int compostLayer, int hydroSeedLayer, int hydroMulchLayer) {
+
+    public CalculationObject(double acres, int compostLayer, int hydroSeedLayer,int lbsOfSeed, int lbsOfFertilizer, int lbsOfAdditive, int hydroMulchLayer, int tanksNeeded) {
         this.acres = acres;
         this.compostLayer = compostLayer;
         this.hydroMulchLayer = hydroMulchLayer;
+        this.lbsOfSeed = lbsOfSeed;
+        this.lbsOfFertilizer = lbsOfFertilizer;
+        this.lbsOfAdditive = lbsOfAdditive;
         this.hydroSeedLayer = hydroSeedLayer;
+        this.tanksNeeded = tanksNeeded;
 
     }
 
