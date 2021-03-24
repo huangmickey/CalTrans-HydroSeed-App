@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ApplicationRatePage">
+
+    <EditText
+        android:id="@+id/applicationRate6"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="380dp"
+        android:ems="10"
+        android:hint="default"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/applicationRate5"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="316dp"
+        android:ems="10"
+        android:hint="default"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/applicationRate4"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:ems="10"
+        android:hint="default"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/applicationRate3"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:ems="10"
+        android:hint="default"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/applicationRate2"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:ems="10"
+        android:hint="default"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/applicationRate1"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:ems="10"
+        android:hint="default"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/customSeedRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seed: "
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationRate1"
+        app:layout_constraintEnd_toStartOf="@+id/applicationRate1"
+        app:layout_constraintTop_toTopOf="@+id/applicationRate1" />
+
+    <TextView
+        android:id="@+id/customHydroSeedFiberRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fertilizer: "
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationRate3"
+        app:layout_constraintEnd_toStartOf="@+id/applicationRate3"
+        app:layout_constraintTop_toTopOf="@+id/applicationRate3" />
+
+    <TextView
+        android:id="@+id/customAdditiveRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Additive: "
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationRate4"
+        app:layout_constraintEnd_toStartOf="@+id/applicationRate4"
+        app:layout_constraintTop_toTopOf="@+id/applicationRate4"
+        app:layout_constraintVertical_bias="0.523" />
+
+    <TextView
+        android:id="@+id/customTackifierRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tackifier: "
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationRate6"
+        app:layout_constraintEnd_toStartOf="@+id/applicationRate6"
+        app:layout_constraintTop_toTopOf="@+id/applicationRate6" />
+
+    <TextView
+        android:id="@+id/customHydroMulchFiberRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fiber: "
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationRate5"
+        app:layout_constraintEnd_toStartOf="@+id/applicationRate5"
+        app:layout_constraintTop_toTopOf="@+id/applicationRate5" />
+
+    <TextView
+        android:id="@+id/customCompostRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Compost: "
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationRate0"
+        app:layout_constraintEnd_toStartOf="@+id/applicationRate0"
+        app:layout_constraintTop_toTopOf="@+id/applicationRate0" />
+
+    <TextView
+        android:id="@+id/customFertilizerRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fiber: "
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationRate2"
+        app:layout_constraintEnd_toStartOf="@+id/applicationRate2"
+        app:layout_constraintTop_toTopOf="@+id/applicationRate2" />
+
+    <EditText
+        android:id="@+id/applicationRate0"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="default"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/getResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goToCalculatePage"
+        android:text="Get Results"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.736" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

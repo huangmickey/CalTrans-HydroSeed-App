@@ -2,7 +2,9 @@ package com.example.hydroseed;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,8 +12,13 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
+import android.widget.ToggleButton;
+
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.ArrayList;
 
@@ -26,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Numpad Buttons
         button0 = (Button) findViewById(R.id.button0);
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
@@ -122,6 +130,34 @@ public class MainActivity extends AppCompatActivity {
                 editText.setText("");
             }
         });
+
+        Switch switchSquareFoot = findViewById(R.id.sqftSwitch);
+        switchSquareFoot.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                EditText acreInput = findViewById(R.id.acreageSource);
+                if(isChecked) {
+                    switchSquareFoot.setText("Sqft");
+                    acreInput.setHint("Enter sqft");
+                } else {
+                    switchSquareFoot.setText("Acres");
+                    acreInput.setHint("Enter acres");
+                }
+            }
+        });
+
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch switchTankSize = findViewById(R.id.tankSwitch);
+        switchTankSize.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    switchTankSize.setText("3000");
+                } else {
+                    switchTankSize.setText("1500");
+                }
+            }
+        });
+
     }
 
     public void calculateButton(View v) {
@@ -135,33 +171,35 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(number > 0) {
-            Intent toCalcPage = new Intent(this, CalculatePage.class);
-            toCalcPage.putExtra("Acreage", number);
-            startActivity(toCalcPage);
+            Intent toApplicationRatePage = new Intent(this, ApplicationRatePage.class);
 
+            @SuppressLint("UseSwitchCompatOrMaterialCode") Switch switchTankSize = findViewById(R.id.tankSwitch);
+            if(switchTankSize.getText().toString().equals("1500")) {
+                Global.tankSize = 1500;
+            } else {
+                Global.tankSize = 3000;
+            }
+
+            @SuppressLint("UseSwitchCompatOrMaterialCode") Switch squareFootSwitch = findViewById(R.id.sqftSwitch);
+            if(squareFootSwitch.getText().toString().equals("Acres")) {
+                Global.userInputAcres = number;
+            } else {
+                Global.userInputSqft = number;
+            }
+            startActivity(toApplicationRatePage);
         } else {
             Context context = getApplicationContext();
             CharSequence text = "Error! Please enter a valid number starting from 1";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-
         }
-
     }
 
     public void historyButton(View v) {
-
         Intent toHistoryPage = new Intent(this, History.class);
+
         startActivity(toHistoryPage);
-
     }
-    public void num1Button(View v) {
 
-        EditText acreInput = findViewById(R.id.acreageSource);
-        String acres = acreInput.getText().toString();
-
-
-
-    }
 }
