@@ -21,7 +21,8 @@
             android:name=".ApplicationRatePage"
             android:label="Application Rate"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                android:theme="@style/Theme.HydroSeed.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

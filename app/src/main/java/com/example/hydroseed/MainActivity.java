@@ -1,8 +1,16 @@
 package com.example.hydroseed;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,196 +18,86 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-
-    Button button0, button1, button2, button3, button4, button5, button6,
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private DrawerLayout drawer;
+    private FrameLayout fragmentContainer;
+    private Button calculate, history, button0, button1, button2, button3, button4, button5, button6,
             button7, button8, button9, button10, buttonC;
-    EditText editText;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Numpad Buttons
-        button0 = (Button) findViewById(R.id.button0);
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
-        button4 = (Button) findViewById(R.id.button4);
-        button5 = (Button) findViewById(R.id.button5);
-        button6 = (Button) findViewById(R.id.button6);
-        button7 = (Button) findViewById(R.id.button7);
-        button8 = (Button) findViewById(R.id.button8);
-        button9 = (Button) findViewById(R.id.button9);
-        button10 = (Button) findViewById(R.id.button10);
-        buttonC = (Button) findViewById(R.id.buttonC);
-        editText = (EditText) findViewById(R.id.acreageSource);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.setText(editText.getText() + "1");
-            }
-        });
+        drawer = findViewById(R.id.drawer_layout);
 
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.setText(editText.getText() + "2");
-            }
-        });
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.setText(editText.getText() + "3");
-            }
-        });
-
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.setText(editText.getText() + "4");
-            }
-        });
-
-        button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.setText(editText.getText() + "5");
-            }
-        });
-
-        button6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.setText(editText.getText() + "6");
-            }
-        });
-
-        button7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.setText(editText.getText() + "7");
-            }
-        });
-
-        button8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.setText(editText.getText() + "8");
-            }
-        });
-
-        button9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.setText(editText.getText() + "9");
-            }
-        });
-
-        button0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.setText(editText.getText() + "0");
-            }
-        });
-        button10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.setText(editText.getText() + ".");
-            }
-        });
-
-        buttonC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.setText("");
-            }
-        });
-
-        Switch switchSquareFoot = findViewById(R.id.sqftSwitch);
-        switchSquareFoot.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                EditText acreInput = findViewById(R.id.acreageSource);
-                if(isChecked) {
-                    switchSquareFoot.setText("Sqft");
-                    acreInput.setHint("Enter sqft");
-                } else {
-                    switchSquareFoot.setText("Acres");
-                    acreInput.setHint("Enter acres");
-                }
-            }
-        });
-
-        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch switchTankSize = findViewById(R.id.tankSwitch);
-        switchTankSize.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    switchTankSize.setText("3000");
-                } else {
-                    switchTankSize.setText("1500");
-                }
-            }
-        });
-
-    }
-
-    public void calculateButton(View v) {
-
-        EditText acreInput = findViewById(R.id.acreageSource);
-        String acres = acreInput.getText().toString();
-        double number = 0;
-
-        if(!acres.equals("")) {
-            number = Double.parseDouble(acres);
-        }
-
-        if(number > 0) {
-            Intent toApplicationRatePage = new Intent(this, ApplicationRatePage.class);
-
-            @SuppressLint("UseSwitchCompatOrMaterialCode") Switch switchTankSize = findViewById(R.id.tankSwitch);
-            if(switchTankSize.getText().toString().equals("1500")) {
-                Global.tankSize = 1500;
-            } else {
-                Global.tankSize = 3000;
-            }
-
-            @SuppressLint("UseSwitchCompatOrMaterialCode") Switch squareFootSwitch = findViewById(R.id.sqftSwitch);
-            if(squareFootSwitch.getText().toString().equals("Acres")) {
-                Global.userInputAcres = number;
-            } else {
-                Global.userInputSqft = number;
-            }
-            startActivity(toApplicationRatePage);
-        } else {
-            Context context = getApplicationContext();
-            CharSequence text = "Error! Please enter a valid number starting from 1";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new CalculateFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_calculate);
         }
     }
 
-    public void historyButton(View v) {
-        Intent toHistoryPage = new Intent(this, History.class);
-
-        startActivity(toHistoryPage);
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_calculate:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new CalculateFragment()).commit();
+                break;
+            case R.id.nav_files:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new FilesFragment()).commit();
+                break;
+            case R.id.nav_setting:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new SettingFragment()).commit();
+                break;
+            case R.id.nav_caltrans:
+                Toast.makeText(this, "Open Web Page: Cal Trans", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_weather:
+                Toast.makeText(this, "Open Web Page: Weather", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
-
+    @Override
+    public void onBackPressed() {
+        //Close Drawer only if back is pressed
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {//Close Activity as usual if pressed and drawer is closed
+            super.onBackPressed();
+        }
+    }
 }

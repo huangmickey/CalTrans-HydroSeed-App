@@ -158,6 +158,7 @@ public class CalculatePage extends AppCompatActivity {
                 if (writeScanner != null) {
                     try {
                         writeScanner.close();
+                        finish();// calculate page finish
                     } catch (IOException e) { // Trouble closing
                         e.printStackTrace();
                     }
