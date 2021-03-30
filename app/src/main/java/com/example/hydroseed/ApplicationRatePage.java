@@ -33,7 +33,7 @@ public class ApplicationRatePage extends AppCompatActivity {
                 Global.applicationRates[i] = Double.parseDouble(customRate);
             }
         }
-        finish();
+
         startActivity(toCalcPage);
 
     }
