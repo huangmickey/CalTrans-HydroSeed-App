@@ -77,17 +77,11 @@ public class CalculatePage extends AppCompatActivity {
         //Store each calculation object into the global history list/linked hash set if meets range requirements
         if (Global.historyList.size() == 0) {
             Global.historyList.add(0, calculation);
-            Global.dupe = new LinkedHashSet<>(Global.historyList);
-            Global.historyList2 = new ArrayList<>(Global.dupe);
         } else if (Global.historyList.size() < Global.historySize) {
             Global.historyList.add(0, calculation);
-            Global.dupe = new LinkedHashSet<>(Global.historyList);
-            Global.historyList2 = new ArrayList<>(Global.dupe);
         } else {
             Global.historyList.remove(4);
             Global.historyList.add(0, calculation);
-            Global.dupe = new LinkedHashSet<>(Global.historyList);
-            Global.historyList2 = new ArrayList<>(Global.dupe);
         }
 
         //Displaying of the results of calculations from previous steps above
