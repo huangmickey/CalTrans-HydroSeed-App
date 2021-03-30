@@ -85,7 +85,8 @@ public class CalculatePage extends AppCompatActivity {
         }
 
         //Displaying of the results of calculations from previous steps above
-        String acreageAmount = String.format("%s or %d square foot", calculation.toStringAcreageAmount(), (int) (input * ACRE_TO_SQFT));
+        String acreageAmount = String.format("%s or %d square foot", calculation.toStringAcreageAmount(),
+                                (int) (input * ACRE_TO_SQFT));
         TextView a = findViewById(R.id.acreage);
         a.setText(acreageAmount);
 
@@ -93,13 +94,16 @@ public class CalculatePage extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.hydroSeed)).setText(calculation.toStringHydroSeedAmount());
         ((TextView) findViewById(R.id.hydroSeed_seed)).setText(calculation.toStringHydroSeedAmount_seed());
-        String hydroSeedAmount_fiber = String.format("%.2f lbs / acre", applicationRates[2]);
-        ((TextView) findViewById(R.id.textRate2)).setText(hydroSeedAmount_fiber);
+        ((TextView) findViewById(R.id.hydroSeed_fiber)).setText(String.format("%s lbs",fiberSeedCalc));
+        String hydroSeedAmount_fiberRate = String.format("%.2f lbs / acre", applicationRates[2]);
+        ((TextView) findViewById(R.id.textRate2)).setText(hydroSeedAmount_fiberRate);
         String hydroSeed_fertilizerBags = String.format("%d bags of 50lbs", (int) bagsOfFertilizer);
         ((TextView) findViewById(R.id.hydroSeed_fertilizer)).setText(hydroSeed_fertilizerBags);
         ((TextView) findViewById(R.id.hydroSeed_additive)).setText(calculation.toStringHydroSeedAmount_additive());
 
         ((TextView) findViewById(R.id.hydroMulch)).setText(calculation.toStringHydroMulchAmount());
+        ((TextView)findViewById(R.id.hydroMulch_fiber)).setText(String.format("%s lbs", fiberMulchCalc));
+        ((TextView)findViewById(R.id.hydroMulch_tackifier)).setText(String.format("%s lbs", tackCalc));
         String hydroMulchAmount_bags = String.format("%d tanks of size %d for %d bag(s)", (int) tanksNeeded, (int) tankSize, (int) bagsOfHydroMulch);
         ((TextView) findViewById(R.id.hydroMulch_tankNeeded)).setText(hydroMulchAmount_bags);
 
@@ -201,7 +205,8 @@ public class CalculatePage extends AppCompatActivity {
         String seedAmount= buildString(whiteSpace, "Seed",
                 ((TextView) findViewById(R.id.hydroSeed_seed)).getText().toString(),
                 ((TextView)findViewById(R.id.textRate1)).getText().toString());
-        String hydroSeedFiber= buildString(whiteSpace, "Fiber", "",
+        String hydroSeedFiber= buildString(whiteSpace, "Fiber",
+                ((TextView)findViewById(R.id.hydroSeed_fiber)).getText().toString(),
                 ((TextView)findViewById(R.id.textRate2)).getText().toString());
         String hydroSeedFertilizer= buildString(whiteSpace, "Fertilizer",
                 ((TextView) findViewById(R.id.hydroSeed_fertilizer)).getText().toString(),
@@ -213,10 +218,12 @@ public class CalculatePage extends AppCompatActivity {
                 seedAmount, hydroSeedFiber, hydroSeedFertilizer, hydroSeedAdditive);
 
         String hydroMulchTableName = buildString(whiteSpace, "", "Figure 2", "");
-        String hydroMulchHeader = buildString(whiteSpace, "Materials", " " , "Rate");
-        String hydroMulchFiber = buildString(whiteSpace, "Fiber", "",
+        String hydroMulchHeader = buildString(whiteSpace, "Materials", "Amount" , "Rate");
+        String hydroMulchFiber = buildString(whiteSpace, "Fiber",
+                ((TextView)findViewById(R.id.hydroMulch_fiber)).getText().toString(),
                 ((TextView)findViewById(R.id.textRate5)).getText().toString());
-        String hydroMulchTackifier = buildString(whiteSpace, "Tackifier", "",
+        String hydroMulchTackifier = buildString(whiteSpace, "Tackifier",
+                ((TextView)findViewById(R.id.hydroMulch_tackifier)).getText().toString(),
                 ((TextView)findViewById(R.id.textRate6)).getText().toString());
         String hydroMulchTable = String.format("%s%s%s%s\n", hydroMulchTableName, hydroMulchHeader,
                 hydroMulchFiber, hydroMulchTackifier);
