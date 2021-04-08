@@ -1,18 +1,24 @@
 package com.example.hydroseed;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
@@ -193,7 +199,51 @@ public class CalculatePage extends AppCompatActivity {
         }
     }
 
-        public void shareData(View v){
+        public void export(View view){
+           StringBuilder data = new StringBuilder();
+           data.append("Acres:,"+String.valueOf(Global.userInputAcres));
+           data.append("\nMaterials,Input,Output");
+           data.append("\nCompost,"+String.valueOf(applicationRates[0])+",TBR");
+            data.append("\nHydroseed,Refer to Figure 1,lbs");
+            data.append("\nHydromulch,Refer to Figure 2,lbs");
+            data.append("\n");
+            data.append("\n,Figure 1");
+            data.append("\nMaterials,Amount,Rate(lbs/acre)");
+            data.append("\nSeed,,"+String.valueOf(applicationRates[1]));
+            data.append("\nFiber,,"+String.valueOf(applicationRates[2]));
+            data.append("\nFertilizer,,"+String.valueOf(applicationRates[3]));
+            data.append("\nAdditive,,"+String.valueOf(applicationRates[4]));
+            data.append("\n");
+            data.append("\n,Figure 2");
+            data.append("\nMaterials,Amount,Rate(lbs/acre)");
+            data.append("\nFiber,,"+String.valueOf(applicationRates[5]));
+            data.append("\nTackifier,,"+String.valueOf(applicationRates[6]));
+            data.append("\n");
+            data.append("\n,tanks of X size");
+
+
+        try {
+            //save the file
+
+
+            FileOutputStream out = openFileOutput("data.csv", Context.MODE_PRIVATE);
+            out.write((data.toString()).getBytes());
+            out.close();
+
+            //export
+            Context context = getApplicationContext();
+            File filelocation = new File(getFilesDir(), "data.csv");
+            Uri path = FileProvider.getUriForFile(context, "com.example.Hydroseed.fileprovider",filelocation);
+            Intent fileIntent = new Intent(Intent.ACTION_SEND);
+            fileIntent.setType("text/csv");
+            fileIntent.putExtra(Intent.EXTRA_SUBJECT, "placeholder, project name and number");
+            fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            fileIntent.putExtra(Intent.EXTRA_STREAM,path);
+            startActivity(Intent.createChooser(fileIntent, "send mail"));
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
 
         }
 

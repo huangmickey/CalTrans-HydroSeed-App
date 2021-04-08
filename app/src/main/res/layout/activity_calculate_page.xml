@@ -483,14 +483,15 @@
                 android:onClick="save_calc"
                 android:text="Save Data"
                 android:textSize="16sp"/>
+
             <Button
                 android:id="@+id/button_share"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="1"
-                android:onClick="shareData"
+                android:onClick="export"
                 android:text="Share Results"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </TableRow>
 <!--End of Save Button-->
 </TableLayout>
