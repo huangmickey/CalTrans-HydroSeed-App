@@ -189,62 +189,63 @@ public class CalculatePage extends AppCompatActivity {
         }
     }
 
-        public void export(View view) {
-            StringBuilder data = new StringBuilder();
-            data.append("Acres:," + String.valueOf(Global.userInputAcres));
-            data.append("\nMaterials,Input,Output");
-            data.append("\nCompost," + String.valueOf(applicationRates[0]) + ",TBR");
-            data.append("\nHydroseed,Refer to Figure 1,lbs");
-            data.append("\nHydromulch,Refer to Figure 2,lbs");
-            data.append("\n");
-            data.append("\n,Figure 1");
-            data.append("\nMaterials,Amount,Rate(lbs/acre)");
-            data.append("\nSeed,," + String.valueOf(applicationRates[1]));
-            data.append("\nFiber,," + String.valueOf(applicationRates[2]));
-            data.append("\nFertilizer,," + String.valueOf(applicationRates[3]));
-            data.append("\nAdditive,," + String.valueOf(applicationRates[4]));
-            data.append("\n");
-            data.append("\n,Figure 2");
-            data.append("\nMaterials,Amount,Rate(lbs/acre)");
-            data.append("\nFiber,," + String.valueOf(applicationRates[5]));
-            data.append("\nTackifier,," + String.valueOf(applicationRates[6]));
-            data.append("\n");
-            data.append("\n,tanks of X size");
+    public void export(View view) {
+        StringBuilder data = new StringBuilder();
+        data.append("Acres:," + String.valueOf(Global.userInputAcres));
+        data.append("\nMaterials,Input,Output");
+        data.append("\nCompost," + String.valueOf(applicationRates[0]) + ",TBR");
+        data.append("\nHydroseed,Refer to Figure 1,lbs");
+        data.append("\nHydromulch,Refer to Figure 2,lbs");
+        data.append("\n");
+        data.append("\n,Figure 1");
+        data.append("\nMaterials,Amount,Rate(lbs/acre)");
+        data.append("\nSeed,," + String.valueOf(applicationRates[1]));
+        data.append("\nFiber,," + String.valueOf(applicationRates[2]));
+        data.append("\nFertilizer,," + String.valueOf(applicationRates[3]));
+        data.append("\nAdditive,," + String.valueOf(applicationRates[4]));
+        data.append("\n");
+        data.append("\n,Figure 2");
+        data.append("\nMaterials,Amount,Rate(lbs/acre)");
+        data.append("\nFiber,," + String.valueOf(applicationRates[5]));
+        data.append("\nTackifier,," + String.valueOf(applicationRates[6]));
+        data.append("\n");
+        data.append("\n,tanks of X size");
 
 
-            try {
-                //save the file
+        try {
+            //save the file
 
 
-                FileOutputStream out = openFileOutput("data.csv", Context.MODE_PRIVATE);
-                out.write((data.toString()).getBytes());
-                out.close();
+            FileOutputStream out = openFileOutput("data.csv", Context.MODE_PRIVATE);
+            out.write((data.toString()).getBytes());
+            out.close();
 
-                //export
-                Context context = getApplicationContext();
-                File filelocation = new File(getFilesDir(), "data.csv");
-                Uri path = FileProvider.getUriForFile(context, "com.example.Hydroseed.fileprovider", filelocation);
-                Intent fileIntent = new Intent(Intent.ACTION_SEND);
-                fileIntent.setType("text/csv");
-                fileIntent.putExtra(Intent.EXTRA_SUBJECT, "placeholder, project name and number");
-                fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                fileIntent.putExtra(Intent.EXTRA_STREAM, path);
-                startActivity(Intent.createChooser(fileIntent, "send mail"));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            //export
+            Context context = getApplicationContext();
+            File filelocation = new File(getFilesDir(), "data.csv");
+            Uri path = FileProvider.getUriForFile(context, "com.example.Hydroseed.fileprovider", filelocation);
+            Intent fileIntent = new Intent(Intent.ACTION_SEND);
+            fileIntent.setType("text/csv");
+            fileIntent.putExtra(Intent.EXTRA_SUBJECT, "placeholder, project name and number");
+            fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+            startActivity(Intent.createChooser(fileIntent, "send mail"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+
     //Creates a formatted output file using the calculation details, arrages a table like format
-    public String fileOutputFormat(){
+    public String fileOutputFormat() {
         //Longest string on average used to define whitespace padding
         String tankNeeded = ((TextView) findViewById(R.id.hydroMulch_tankNeeded)).getText().toString();
-        int whiteSpace = - tankNeeded.length();
+        int whiteSpace = -tankNeeded.length();
 
         String calculationAreaInput = buildString(whiteSpace, "",
-                ((TextView)findViewById(R.id.acreage)).getText().toString(), "");
-        String calculationTableHeader = buildString(whiteSpace,"Materials","Input","Output");
-        String calculationCompost = buildString(whiteSpace,"Compost", ((TextView)findViewById(R.id.textRate0)).getText().toString(),
-                ((TextView)findViewById(R.id.compost)).getText().toString());
+                ((TextView) findViewById(R.id.acreage)).getText().toString(), "");
+        String calculationTableHeader = buildString(whiteSpace, "Materials", "Input", "Output");
+        String calculationCompost = buildString(whiteSpace, "Compost", ((TextView) findViewById(R.id.textRate0)).getText().toString(),
+                ((TextView) findViewById(R.id.compost)).getText().toString());
         String calculationHydroSeed = buildString(whiteSpace, "HydroSeed", "Refer to Fig 1",
                 ((TextView) findViewById(R.id.hydroSeed)).getText().toString());
         String calculationHydroMulch = buildString(whiteSpace, "HydroMulch", "Refer to Fig 2",
@@ -253,51 +254,52 @@ public class CalculatePage extends AppCompatActivity {
                 calculationCompost, calculationHydroSeed, calculationHydroMulch);
 
         String hydroSeedTableName = buildString(whiteSpace, "", "Figure 1", "");
-        String hydroSeedHeader = buildString(whiteSpace, "Materials", "Amount","Rate");
-        String seedAmount= buildString(whiteSpace, "Seed",
+        String hydroSeedHeader = buildString(whiteSpace, "Materials", "Amount", "Rate");
+        String seedAmount = buildString(whiteSpace, "Seed",
                 ((TextView) findViewById(R.id.hydroSeed_seed)).getText().toString(),
-                ((TextView)findViewById(R.id.textRate1)).getText().toString());
-        String hydroSeedFiber= buildString(whiteSpace, "Fiber", "",
-                ((TextView)findViewById(R.id.textRate2)).getText().toString());
-        String hydroSeedFertilizer= buildString(whiteSpace, "Fertilizer",
+                ((TextView) findViewById(R.id.textRate1)).getText().toString());
+        String hydroSeedFiber = buildString(whiteSpace, "Fiber", "",
+                ((TextView) findViewById(R.id.textRate2)).getText().toString());
+        String hydroSeedFertilizer = buildString(whiteSpace, "Fertilizer",
                 ((TextView) findViewById(R.id.hydroSeed_fertilizer)).getText().toString(),
-                ((TextView)findViewById(R.id.textRate3)).getText().toString());
-        String hydroSeedAdditive= buildString(whiteSpace, "Additive",
+                ((TextView) findViewById(R.id.textRate3)).getText().toString());
+        String hydroSeedAdditive = buildString(whiteSpace, "Additive",
                 ((TextView) findViewById(R.id.hydroSeed_additive)).getText().toString(),
-                ((TextView)findViewById(R.id.textRate4)).getText().toString());
+                ((TextView) findViewById(R.id.textRate4)).getText().toString());
         String hydroSeedTable = String.format("%s%s%s%s%s%s\n", hydroSeedTableName, hydroSeedHeader,
                 seedAmount, hydroSeedFiber, hydroSeedFertilizer, hydroSeedAdditive);
 
         String hydroMulchTableName = buildString(whiteSpace, "", "Figure 2", "");
-        String hydroMulchHeader = buildString(whiteSpace, "Materials", " " , "Rate");
+        String hydroMulchHeader = buildString(whiteSpace, "Materials", " ", "Rate");
         String hydroMulchFiber = buildString(whiteSpace, "Fiber", "",
-                ((TextView)findViewById(R.id.textRate5)).getText().toString());
+                ((TextView) findViewById(R.id.textRate5)).getText().toString());
         String hydroMulchTackifier = buildString(whiteSpace, "Tackifier", "",
-                ((TextView)findViewById(R.id.textRate6)).getText().toString());
+                ((TextView) findViewById(R.id.textRate6)).getText().toString());
         String hydroMulchTable = String.format("%s%s%s%s\n", hydroMulchTableName, hydroMulchHeader,
                 hydroMulchFiber, hydroMulchTackifier);
         String hydroMulchTanks = buildString(whiteSpace, " ",
-                tankNeeded," ");
-        return String.format("%s%s\n%s\n%s%s\n\n\n\n",calculationAreaInput, calculationTable, hydroSeedTable, hydroMulchTable, hydroMulchTanks);
+                tankNeeded, " ");
+        return String.format("%s%s\n%s\n%s%s\n\n\n\n", calculationAreaInput, calculationTable, hydroSeedTable, hydroMulchTable, hydroMulchTanks);
     }
 
     //Builds string based on padding whitespace and 3 strings to be separated by pipes
-    public String buildString(int whiteSpace, String column1, String column2, String column3){
+    public String buildString(int whiteSpace, String column1, String column2, String column3) {
         String s = String.format("|%" + whiteSpace + "s" + "|%" + whiteSpace + "s" + "|%" + whiteSpace + "s|\n", column1, column2, column3);
         String divider = buildDivider(s.length());
         return s + divider;
     }
 
     //Builds a divider using a char array and a for loop, ending has carriage return
-    public String buildDivider(int length){
-        char [] b = new char[length];
-        b[length-1] = '\r';
-        for(int i = 0; i < length-1; i++){
-           b[i] = '-';
+    public String buildDivider(int length) {
+        char[] b = new char[length];
+        b[length - 1] = '\r';
+        for (int i = 0; i < length - 1; i++) {
+            b[i] = '-';
         }
         return new String(b);
     }
 
-    public void shareData(View v){
+    public void shareData(View v) {
 
     }
+}
