@@ -32,7 +32,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.Hydroseed.fileprovider"
+            android:authorities="com.example.Hydroseed.FileProvider"
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data

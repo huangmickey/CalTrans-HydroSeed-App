@@ -222,11 +222,11 @@ public class CalculatePage extends AppCompatActivity {
 
             //export
             Context context = getApplicationContext();
-            File filelocation = new File(getFilesDir(), "data.csv");
-            Uri path = FileProvider.getUriForFile(context, "com.example.Hydroseed.fileprovider", filelocation);
+            File fileLocation = new File(getFilesDir(), "data.csv");
+            Uri path = FileProvider.getUriForFile(context, "com.example.Hydroseed.FileProvider", fileLocation);
             Intent fileIntent = new Intent(Intent.ACTION_SEND);
             fileIntent.setType("text/csv");
-            fileIntent.putExtra(Intent.EXTRA_SUBJECT, "placeholder, project name and number");
+            fileIntent.putExtra(Intent.EXTRA_SUBJECT, "##-######, PROJECT_NAME");
             fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             fileIntent.putExtra(Intent.EXTRA_STREAM, path);
             startActivity(Intent.createChooser(fileIntent, "send mail"));
