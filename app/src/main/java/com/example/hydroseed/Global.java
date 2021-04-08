@@ -10,8 +10,6 @@ public class Global {
 
     static final int historySize = 5;
     public static List<CalculationObject> historyList = new ArrayList<>();
-    public static LinkedHashSet<CalculationObject> dupe = new LinkedHashSet<>();
-    public static List<CalculationObject> historyList2 = new ArrayList<>();
 
 
     static double[] applicationRates = {270, 65, 1000, 1700, 60, 2500, 175};

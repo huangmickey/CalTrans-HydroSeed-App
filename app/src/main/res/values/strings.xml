@@ -45,4 +45,7 @@
     <string name="todo">TODO</string>
     <string name="acresSwitch">Acres</string>
     <string name="_1500">1500</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

@@ -248,6 +248,14 @@
                 android:gravity="center"
                 android:text="Fiber"
                 android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/hydroSeed_fiber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:text="lbs"
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/textRate2"
@@ -337,7 +345,7 @@
                 android:text="Figure 2"
                 android:textSize="16sp"/>
         </TableRow>
-        <!--Header-->
+        <!--End of Header-->
     </TableLayout>
     <!--Table for Calculated Data Entry-->
     <TableLayout
@@ -363,6 +371,13 @@
                 android:layout_height="fill_parent"
                 android:layout_column="1"
                 android:gravity="center"
+                android:text="Amount"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_column="2"
+                android:gravity="center"
                 android:text="Rate"
                 android:textSize="16sp"/>
         </TableRow>
@@ -379,10 +394,18 @@
                 android:text="Fiber"
                 android:textSize="16sp"/>
             <TextView
-                android:id="@+id/textRate5"
+                android:id="@+id/hydroMulch_fiber"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="1"
+                android:gravity="center"
+                android:text="lbs"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/textRate5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="2"
                 android:gravity="center"
                 android:text="lbs/area"
                 android:textSize="16sp"/>
@@ -400,10 +423,18 @@
                 android:text="Tackifier"
                 android:textSize="16sp"/>
             <TextView
-                android:id="@+id/textRate6"
+                android:id="@+id/hydroMulch_tackifier"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="1"
+                android:gravity="center"
+                android:text="lbs"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/textRate6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="2"
                 android:gravity="center"
                 android:text="lbs/area"
                 android:textSize="16sp"/>

@@ -15,7 +15,9 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="onClick"
+        android:clickable="true"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -26,7 +28,9 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        android:onClick="onClick"
+        android:clickable="true"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -37,7 +41,9 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        android:onClick="onClick"
+        android:clickable="true"/>
 
     <TextView
         android:id="@+id/textView2"
@@ -48,7 +54,9 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        android:onClick="onClick"
+        android:clickable="true"/>
 
     <TextView
         android:id="@+id/textView1"
@@ -59,7 +67,9 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:onClick="onClick"
+        android:clickable="true"/>
 
     <ImageView
         android:id="@+id/imageView2"
