@@ -123,7 +123,7 @@ public class CalculateFragment extends Fragment implements View.OnClickListener,
                 startActivity(toHistoryPage);
                 break;
             case R.id.calculate:
-                Toast.makeText(getContext(),"Calc", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(),"Calc", Toast.LENGTH_SHORT).show();
                 String acres = editText.getText().toString();
 
                 double number = 0;

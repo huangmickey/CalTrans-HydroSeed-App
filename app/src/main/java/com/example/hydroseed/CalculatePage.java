@@ -91,6 +91,7 @@ public class CalculatePage extends AppCompatActivity {
             Global.historyList.add(0, calculation);
         }
 
+
         //Displaying of the results of calculations from previous steps above
         String acreageAmount = String.format("%s or %d square foot", calculation.toStringAcreageAmount(), (int) (input * ACRE_TO_SQFT));
         TextView a = findViewById(R.id.acreage);
@@ -100,6 +101,7 @@ public class CalculatePage extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.hydroSeed)).setText(calculation.toStringHydroSeedAmount());
         ((TextView) findViewById(R.id.hydroSeed_seed)).setText(calculation.toStringHydroSeedAmount_seed());
+        ((TextView) findViewById(R.id.hydroSeed_fiber)).setText(String.valueOf(fiberSeedCalc) + " lbs");
         String hydroSeedAmount_fiber = String.format("%.2f lbs / acre", applicationRates[2]);
         ((TextView) findViewById(R.id.textRate2)).setText(hydroSeedAmount_fiber);
         String hydroSeed_fertilizerBags = String.format("%d bags of 50lbs", (int) bagsOfFertilizer);
@@ -107,6 +109,8 @@ public class CalculatePage extends AppCompatActivity {
         ((TextView) findViewById(R.id.hydroSeed_additive)).setText(calculation.toStringHydroSeedAmount_additive());
 
         ((TextView) findViewById(R.id.hydroMulch)).setText(calculation.toStringHydroMulchAmount());
+        ((TextView) findViewById(R.id.hydroMulch_fiber)).setText(String.valueOf(fiberMulchCalc) + " lbs");
+        ((TextView) findViewById(R.id.hydroMulch_tackifier)).setText(String.valueOf(tackCalc) + " lbs");
         String hydroMulchAmount_bags = String.format("%d tanks of size %d for %d bag(s)", (int) tanksNeeded, (int) tankSize, (int) bagsOfHydroMulch);
         ((TextView) findViewById(R.id.hydroMulch_tankNeeded)).setText(hydroMulchAmount_bags);
 
@@ -125,7 +129,6 @@ public class CalculatePage extends AppCompatActivity {
         ((TextView) findViewById(R.id.textRate4)).setText(applicationRate4);
         ((TextView) findViewById(R.id.textRate5)).setText(applicationRate5);
         ((TextView) findViewById(R.id.textRate6)).setText(applicationRate6);
-
         try {
             save_historyData();
         } catch (FileNotFoundException e) {
@@ -239,13 +242,13 @@ public class CalculatePage extends AppCompatActivity {
     public String fileOutputFormat() {
         //Longest string on average used to define whitespace padding
         String tankNeeded = ((TextView) findViewById(R.id.hydroMulch_tankNeeded)).getText().toString();
-        int whiteSpace = -tankNeeded.length();
+        int whiteSpace = - tankNeeded.length();
 
         String calculationAreaInput = buildString(whiteSpace, "",
-                ((TextView) findViewById(R.id.acreage)).getText().toString(), "");
-        String calculationTableHeader = buildString(whiteSpace, "Materials", "Input", "Output");
-        String calculationCompost = buildString(whiteSpace, "Compost", ((TextView) findViewById(R.id.textRate0)).getText().toString(),
-                ((TextView) findViewById(R.id.compost)).getText().toString());
+                ((TextView)findViewById(R.id.acreage)).getText().toString(), "");
+        String calculationTableHeader = buildString(whiteSpace,"Materials","Input","Output");
+        String calculationCompost = buildString(whiteSpace,"Compost", ((TextView)findViewById(R.id.textRate0)).getText().toString(),
+                ((TextView)findViewById(R.id.compost)).getText().toString());
         String calculationHydroSeed = buildString(whiteSpace, "HydroSeed", "Refer to Fig 1",
                 ((TextView) findViewById(R.id.hydroSeed)).getText().toString());
         String calculationHydroMulch = buildString(whiteSpace, "HydroMulch", "Refer to Fig 2",
@@ -254,32 +257,35 @@ public class CalculatePage extends AppCompatActivity {
                 calculationCompost, calculationHydroSeed, calculationHydroMulch);
 
         String hydroSeedTableName = buildString(whiteSpace, "", "Figure 1", "");
-        String hydroSeedHeader = buildString(whiteSpace, "Materials", "Amount", "Rate");
-        String seedAmount = buildString(whiteSpace, "Seed",
+        String hydroSeedHeader = buildString(whiteSpace, "Materials", "Amount","Rate");
+        String seedAmount= buildString(whiteSpace, "Seed",
                 ((TextView) findViewById(R.id.hydroSeed_seed)).getText().toString(),
-                ((TextView) findViewById(R.id.textRate1)).getText().toString());
-        String hydroSeedFiber = buildString(whiteSpace, "Fiber", "",
-                ((TextView) findViewById(R.id.textRate2)).getText().toString());
-        String hydroSeedFertilizer = buildString(whiteSpace, "Fertilizer",
+                ((TextView)findViewById(R.id.textRate1)).getText().toString());
+        String hydroSeedFiber= buildString(whiteSpace, "Fiber",
+                ((TextView)findViewById(R.id.hydroSeed_fiber)).getText().toString(),
+                ((TextView)findViewById(R.id.textRate2)).getText().toString());
+        String hydroSeedFertilizer= buildString(whiteSpace, "Fertilizer",
                 ((TextView) findViewById(R.id.hydroSeed_fertilizer)).getText().toString(),
-                ((TextView) findViewById(R.id.textRate3)).getText().toString());
-        String hydroSeedAdditive = buildString(whiteSpace, "Additive",
+                ((TextView)findViewById(R.id.textRate3)).getText().toString());
+        String hydroSeedAdditive= buildString(whiteSpace, "Additive",
                 ((TextView) findViewById(R.id.hydroSeed_additive)).getText().toString(),
-                ((TextView) findViewById(R.id.textRate4)).getText().toString());
+                ((TextView)findViewById(R.id.textRate4)).getText().toString());
         String hydroSeedTable = String.format("%s%s%s%s%s%s\n", hydroSeedTableName, hydroSeedHeader,
                 seedAmount, hydroSeedFiber, hydroSeedFertilizer, hydroSeedAdditive);
 
         String hydroMulchTableName = buildString(whiteSpace, "", "Figure 2", "");
-        String hydroMulchHeader = buildString(whiteSpace, "Materials", " ", "Rate");
-        String hydroMulchFiber = buildString(whiteSpace, "Fiber", "",
-                ((TextView) findViewById(R.id.textRate5)).getText().toString());
-        String hydroMulchTackifier = buildString(whiteSpace, "Tackifier", "",
-                ((TextView) findViewById(R.id.textRate6)).getText().toString());
+        String hydroMulchHeader = buildString(whiteSpace, "Materials", "Amount" , "Rate");
+        String hydroMulchFiber = buildString(whiteSpace, "Fiber",
+                ((TextView)findViewById(R.id.hydroMulch_fiber)).getText().toString(),
+                ((TextView)findViewById(R.id.textRate5)).getText().toString());
+        String hydroMulchTackifier = buildString(whiteSpace, "Tackifier",
+                ((TextView)findViewById(R.id.hydroMulch_tackifier)).getText().toString(),
+                ((TextView)findViewById(R.id.textRate6)).getText().toString());
         String hydroMulchTable = String.format("%s%s%s%s\n", hydroMulchTableName, hydroMulchHeader,
                 hydroMulchFiber, hydroMulchTackifier);
         String hydroMulchTanks = buildString(whiteSpace, " ",
-                tankNeeded, " ");
-        return String.format("%s%s\n%s\n%s%s\n\n\n\n", calculationAreaInput, calculationTable, hydroSeedTable, hydroMulchTable, hydroMulchTanks);
+                tankNeeded," ");
+        return String.format("%s%s\n%s\n%s%s\n\n\n\n",calculationAreaInput, calculationTable, hydroSeedTable, hydroMulchTable, hydroMulchTanks);
     }
 
     //Builds string based on padding whitespace and 3 strings to be separated by pipes
