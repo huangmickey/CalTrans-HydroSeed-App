@@ -193,6 +193,7 @@ public class CalculatePage extends AppCompatActivity {
     }
 
     public void export(View view) {
+
         StringBuilder data = new StringBuilder();
         data.append("Acres:," + String.valueOf(Global.userInputAcres));
         data.append("\nMaterials,Input,Output");
@@ -229,7 +230,7 @@ public class CalculatePage extends AppCompatActivity {
             Uri path = FileProvider.getUriForFile(context, "com.example.Hydroseed.FileProvider", fileLocation);
             Intent fileIntent = new Intent(Intent.ACTION_SEND);
             fileIntent.setType("text/csv");
-            fileIntent.putExtra(Intent.EXTRA_SUBJECT, "##-######, PROJECT_NAME");
+            fileIntent.putExtra(Intent.EXTRA_SUBJECT, "" + numbEditText.getText().toString() + " " + nameEditText.getText().toString());
             fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             fileIntent.putExtra(Intent.EXTRA_STREAM, path);
             startActivity(Intent.createChooser(fileIntent, "send mail"));

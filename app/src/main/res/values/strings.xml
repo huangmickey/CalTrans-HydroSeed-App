@@ -48,4 +48,18 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    //---------Strings for application rate page--------//
+    <string name="lbs">lbs</string>
+    <string name="cy">cy</string>
+    <string name="additive">Additive:</string>
+    <string name="get_results">Get Results</string>
+    <string name="fiber">Fiber:</string>
+    <string name="tackifier">Tackifier:</string>
+    <string name="seed">Seed:</string>
+    <string name="fertilizer">Fertilizer:</string>
+    <string name="compost">Compost:</string>
+    <string name="revert_to_default_rates">Revert To Default Rates</string>
+    //--------------------------------------------------//
+
 </resources>
