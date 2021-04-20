@@ -50,7 +50,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     //---------Strings for application rate page--------//
-    <string name="lbs">lbs</string>
     <string name="cy">cy</string>
     <string name="additive">Additive:</string>
     <string name="get_results">Get Results</string>
@@ -60,6 +59,34 @@
     <string name="fertilizer">Fertilizer:</string>
     <string name="compost">Compost:</string>
     <string name="revert_to_default_rates">Revert To Default Rates</string>
+    <string name="fertilizer2">Fertilizer</string>
+    <string name="additive2">Additive</string>
+    <string name="figure_1">Figure 1</string>
+    <string name="a_z">a-Z##-####</string>
+    <string name="acres_sq_ft">Acres / Sq.ft</string>
+    <string name="hydroseed">HydroSeed</string>
+    <string name="refer_to_fig_1">Refer to Fig 1</string>
+    <string name="yards_3">Yards^3</string>
+    <string name="hydro_mulch">Hydro Mulch</string>
+    <string name="figure_2">Figure 2</string>
+    <string name="save_data">Save Data</string>
+    <string name="share_results">Share Results</string>
+    <string name="amount">Amount</string>
+    <string name="rate">Rate</string>
+    <string name="tackifier2">Tackifier</string>
+    <string name="bags_tank">bags / Tank</string>
+    <string name="project_name_optional">Project Name (Optional)</string>
+    <string name="fiber2">Fiber</string>
+    <string name="bags_50lbs">Bags(50lbs)</string>
+    <string name="lbs_area">lbs/area</string>
+    <string name="seed2">Seed</string>
+    <string name="lbs">lbs</string>
+    <string name="refer_to_fig_2">Refer to Fig 2</string>
+    <string name="ft_3_area_unit">Ft^3 / area unit</string>
+    <string name="compost2">Compost</string>
+    <string name="output">Output</string>
+    <string name="input">Input</string>
+    <string name="materials">Materials</string>
     //--------------------------------------------------//
 
 </resources>

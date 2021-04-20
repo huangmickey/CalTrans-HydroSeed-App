@@ -104,7 +104,7 @@ public class CalculatePage extends AppCompatActivity {
         ((TextView) findViewById(R.id.hydroSeed_fiber)).setText(String.valueOf(fiberSeedCalc) + " lbs");
         String hydroSeedAmount_fiber = String.format("%.2f lbs / acre", applicationRates[2]);
         ((TextView) findViewById(R.id.textRate2)).setText(hydroSeedAmount_fiber);
-        String hydroSeed_fertilizerBags = String.format("%d bags of 50lbs", (int) bagsOfFertilizer);
+        String hydroSeed_fertilizerBags = String.format("%d bag(s)", (int) bagsOfFertilizer);
         ((TextView) findViewById(R.id.hydroSeed_fertilizer)).setText(hydroSeed_fertilizerBags);
         ((TextView) findViewById(R.id.hydroSeed_additive)).setText(calculation.toStringHydroSeedAmount_additive());
 

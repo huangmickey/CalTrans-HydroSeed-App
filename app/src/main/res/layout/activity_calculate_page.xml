@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalculatePage">
+    tools:context=".CalculatePage"
+    >
 <!--Table for Area inputted-->
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="50dp">
+        android:layout_marginBottom="50dp"
+        android:background="#969696"
+        >
     <!--Area Input-->
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/acreage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Acres / Sq.ft "
-            android:textSize="16sp" />
+            android:layout_height="match_parent"
+            android:background="#d2d2d2"
+            android:layout_margin="1dp">
+
+            <TextView
+                android:id="@+id/acreage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/acres_sq_ft"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </TableRow>
     <!--End Of Area Input-->
     </TableLayout>
@@ -45,22 +53,28 @@
                 android:layout_height="fill_parent"
                 android:layout_column="0"
                 android:gravity="center"
-                android:text="Materials"
-                android:textSize="16sp"/>
+                android:text="@string/materials"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_column="1"
                 android:gravity="center"
-                android:text="Input"
-                android:textSize="16sp"/>
+                android:text="@string/input"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_column="2"
                 android:gravity="center"
-                android:text="Output"
-                android:textSize="16sp"/>
+                android:text="@string/output"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
         </TableRow>
     <!--End of Header-->
     <!--Compost Layer -->
@@ -72,24 +86,32 @@
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:gravity="center"
-                android:text="Compost"
-                android:textSize="16sp"/>
+                android:text="@string/compost2"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
             <TextView
                 android:id="@+id/textRate0"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="1"
                 android:gravity="center"
-                android:text="Ft^3 / area unit"
-                android:textSize="16sp"/>
+                android:text="@string/ft_3_area_unit"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
+
             <TextView
                 android:id="@+id/compost"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
                 android:gravity="center"
-                android:text="Yards^3"
-                android:textSize="16sp"/>
+                android:text="@string/yards_3"
+                android:textColor="#D60505"
+                android:textSize="16sp" />
         </TableRow>
     <!--End of Compost Layer-->
     <!--Hydro Seed Layer-->
@@ -101,23 +123,33 @@
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:gravity="center"
-                android:text="HydroSeed"
-                android:textSize="16sp"/>
+                android:text="@string/hydroseed"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
                 android:gravity="center"
-                android:text="Refer to Fig 1"
-                android:textSize="16sp"/>
+                android:text="@string/refer_to_fig_1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/hydroSeed"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
                 android:gravity="center"
-                android:text="lbs"
-                android:textSize="16sp"/>
+                android:text="@string/lbs"
+                android:textColor="#D60505"
+                android:textSize="16sp" />
         </TableRow>
     <!--End of Hydro Seed Layer-->
     <!--Hydro Seed Layer-->
@@ -129,24 +161,34 @@
                     android:layout_height="match_parent"
                     android:layout_column="0"
                     android:gravity="center"
-                    android:text="Hydro Mulch"
-                    android:textSize="16sp"/>
-                <TextView
-                    android:id="@+id/hydroMulch_lbsPerAcre"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_column="1"
-                    android:gravity="center"
-                    android:text="Refer to Fig 2"
-                    android:textSize="16sp"/>
-                <TextView
-                    android:id="@+id/hydroMulch"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_column="2"
-                    android:gravity="center"
-                    android:text="lbs"
-                    android:textSize="16sp"/>
+                    android:text="@string/hydro_mulch"
+                    android:textSize="16sp"
+                    android:background="#d2d2d2"
+                    android:layout_margin="1dp"/>
+
+            <TextView
+                android:id="@+id/hydroMulch_lbsPerAcre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/refer_to_fig_2"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/hydroMulch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs"
+                android:textColor="#D60505"
+                android:textSize="16sp" />
             </TableRow>
     </TableLayout>
 <!--End of Calculation Data-->
@@ -155,20 +197,24 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="196dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="50dp">
     <!--Header-->
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
+                android:background="#d2d2d2"
                 android:gravity="center"
-                android:text="Figure 1"
-                android:textSize="16sp"/>
+                android:text="@string/figure_1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </TableRow>
     <!--Header-->
     </TableLayout>
@@ -190,22 +236,28 @@
                 android:layout_height="fill_parent"
                 android:layout_column="0"
                 android:gravity="center"
-                android:text="Materials"
-                android:textSize="16sp"/>
+                android:text="@string/materials"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp" />
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_column="1"
                 android:gravity="center"
-                android:text="Amount"
-                android:textSize="16sp"/>
+                android:text="@string/amount"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_column="2"
                 android:gravity="center"
-                android:text="Rate"
-                android:textSize="16sp"/>
+                android:text="@string/rate"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
         </TableRow>
         <!--End of Header-->
         <!--Seed Layer -->
@@ -217,24 +269,32 @@
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:gravity="center"
-                android:text="Seed"
-                android:textSize="16sp"/>
+                android:text="@string/seed2"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
+
             <TextView
                 android:id="@+id/hydroSeed_seed"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
                 android:gravity="center"
-                android:text="lbs"
-                android:textSize="16sp"/>
+                android:text="@string/lbs"
+                android:textColor="#D60505"
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/textRate1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="2"
                 android:gravity="center"
-                android:text="lbs/area"
-                android:textSize="16sp"/>
+                android:text="@string/lbs_area"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
         </TableRow>
         <!--End of Seed Layer-->
         <!--Fiber Layer-->
@@ -246,16 +306,22 @@
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:gravity="center"
-                android:text="Fiber"
-                android:textSize="16sp"/>
+                android:text="@string/fiber2"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
+
             <TextView
                 android:id="@+id/hydroSeed_fiber"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
                 android:gravity="center"
-                android:text="lbs"
-                android:textSize="16sp"/>
+                android:text="@string/lbs"
+                android:textColor="#D60505"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textRate2"
@@ -263,8 +329,10 @@
                 android:layout_height="match_parent"
                 android:layout_column="2"
                 android:gravity="center"
-                android:text="lbs/area"
-                android:textSize="16sp"/>
+                android:text="@string/lbs_area"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
         </TableRow>
         <!--End of Fiber Layer-->
         <!--Fertilizer Layer-->
@@ -276,24 +344,32 @@
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:gravity="center"
-                android:text="Fertilizer"
-                android:textSize="16sp"/>
+                android:text="@string/fertilizer2"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
+
             <TextView
                 android:id="@+id/hydroSeed_fertilizer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
                 android:gravity="center"
-                android:text="Bags(50lbs)"
-                android:textSize="16sp"/>
+                android:text="@string/bags_50lbs"
+                android:textColor="#D60505"
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/textRate3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="2"
                 android:gravity="center"
-                android:text="lbs/area"
-                android:textSize="16sp"/>
+                android:text="@string/lbs_area"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
         </TableRow>
         <!--End of Fertilizer Layer-->
         <!-- Additve Layer-->
@@ -305,24 +381,32 @@
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:gravity="center"
-                android:text="Additive"
-                android:textSize="16sp"/>
+                android:text="@string/additive2"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
+
             <TextView
                 android:id="@+id/hydroSeed_additive"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
                 android:gravity="center"
-                android:text="lbs"
-                android:textSize="16sp"/>
+                android:text="@string/lbs"
+                android:textColor="#D60505"
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/textRate4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="2"
                 android:gravity="center"
-                android:text="lbs/area"
-                android:textSize="16sp"/>
+                android:text="@string/lbs_area"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
         </TableRow>
     </TableLayout>
     <!--End of HydroSeed Mixture Data-->
@@ -330,20 +414,26 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="346dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="50dp">
         <!--Header-->
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
+                android:background="#d2d2d2"
                 android:gravity="center"
-                android:text="Figure 2"
-                android:textSize="16sp"/>
+                android:text="@string/figure_2"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:lineHeight="10sp" />
         </TableRow>
         <!--End of Header-->
     </TableLayout>
@@ -364,22 +454,28 @@
                 android:layout_height="fill_parent"
                 android:layout_column="0"
                 android:gravity="center"
-                android:text="Materials"
-                android:textSize="16sp"/>
+                android:text="@string/materials"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_column="1"
                 android:gravity="center"
-                android:text="Amount"
-                android:textSize="16sp"/>
+                android:text="@string/amount"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_column="2"
                 android:gravity="center"
-                android:text="Rate"
-                android:textSize="16sp"/>
+                android:text="@string/rate"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
         </TableRow>
         <!--End of Header-->
         <!--Tack Layer-->
@@ -391,24 +487,32 @@
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:gravity="center"
-                android:text="Fiber"
-                android:textSize="16sp"/>
+                android:text="@string/fiber2"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
+
             <TextView
                 android:id="@+id/hydroMulch_fiber"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
                 android:gravity="center"
-                android:text="lbs"
-                android:textSize="16sp"/>
+                android:text="@string/lbs"
+                android:textColor="#D60505"
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/textRate5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="2"
                 android:gravity="center"
-                android:text="lbs/area"
-                android:textSize="16sp"/>
+                android:text="@string/lbs_area"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
         </TableRow>
         <!--End of Fiber Layer-->
         <!--Tack Layer-->
@@ -420,24 +524,32 @@
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:gravity="center"
-                android:text="Tackifier"
-                android:textSize="16sp"/>
+                android:text="@string/tackifier2"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
+
             <TextView
                 android:id="@+id/hydroMulch_tackifier"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
                 android:gravity="center"
-                android:text="lbs"
-                android:textSize="16sp"/>
+                android:text="@string/lbs"
+                android:textColor="#D60505"
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/textRate6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="2"
                 android:gravity="center"
-                android:text="lbs/area"
-                android:textSize="16sp"/>
+                android:text="@string/lbs_area"
+                android:textSize="16sp"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
         </TableRow>
         <!--End of Tackfier Layer-->
         <!--Tack Layer-->
@@ -453,13 +565,15 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/hydroMulch_tankNeeded"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="bags / Tank"
-                android:textSize="16sp"/>
+                android:text="@string/bags_tank"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </TableRow>
     </TableLayout>
     <!--Table for User Data for File naming-->
@@ -480,8 +594,10 @@
                 android:layout_column="0"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:hint="##-####"
-                android:inputType="phone"/>
+                android:hint="@string/a_z"
+                android:inputType="phone"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
             <EditText
                 android:id="@+id/calc_name"
                 android:layout_width="match_parent"
@@ -489,8 +605,10 @@
                 android:layout_weight="1"
                 android:layout_column="1"
                 android:gravity="center"
-                android:hint="Project Name (Optional)"
-                android:inputType="text" />
+                android:hint="@string/project_name_optional"
+                android:inputType="text"
+                android:background="#d2d2d2"
+                android:layout_margin="1dp"/>
         </TableRow>
     </TableLayout>
     <!--End of Project Number-->
@@ -499,9 +617,9 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="600dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="560dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="60dp"
         android:stretchColumns="0,1">
         <TableRow
             android:layout_width="match_parent"
@@ -512,7 +630,7 @@
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:onClick="save_calc"
-                android:text="Save Data"
+                android:text="@string/save_data"
                 android:textSize="16sp"/>
 
             <Button
@@ -521,7 +639,7 @@
                 android:layout_height="match_parent"
                 android:layout_column="1"
                 android:onClick="export"
-                android:text="Share Results"
+                android:text="@string/share_results"
                 android:textSize="16sp" />
         </TableRow>
 <!--End of Save Button-->
