@@ -21,6 +21,7 @@ public class CalculationObject {
         this.lbsOfAdditive = lbsOfAdditive;
         this.hydroSeedLayer = hydroSeedLayer;
         this.tanksNeeded = tanksNeeded;
+        
     }
 
     public double getAcres() {
