@@ -25,6 +25,7 @@ import java.util.LinkedHashSet;
 
 import static com.example.hydroseed.Global.ACRE_TO_SQFT;
 import static com.example.hydroseed.Global.applicationRates;
+import static com.example.hydroseed.Global.tankSize;
 
 public class CalculatePage extends AppCompatActivity {
     private static String projectName = "";
@@ -195,25 +196,26 @@ public class CalculatePage extends AppCompatActivity {
     public void export(View view) {
 
         StringBuilder data = new StringBuilder();
-        data.append("Acres:," + String.valueOf(Global.userInputAcres));
+        data.append("Acres: " + String.valueOf(Global.userInputAcres)+", Tank Size: " + tankSize + " Gallons");
         data.append("\nMaterials,Input,Output");
-        data.append("\nCompost," + String.valueOf(applicationRates[0]) + ",TBR");
-        data.append("\nHydroseed,Refer to Figure 1,lbs");
-        data.append("\nHydromulch,Refer to Figure 2,lbs");
+        data.append("\nCompost," + String.valueOf(applicationRates[0]) + ","+ ((TextView)findViewById(R.id.compost)).getText().toString() );
+        data.append("\nHydroseed,Refer to Figure 1,"+((TextView) findViewById(R.id.hydroSeed)).getText().toString() );
+        data.append("\nHydromulch,Refer to Figure 2," +((TextView) findViewById(R.id.hydroMulch)).getText().toString());
         data.append("\n");
-        data.append("\n,Figure 1");
+        data.append("\nHydroseed,Figure 1");
         data.append("\nMaterials,Amount,Rate(lbs/acre)");
-        data.append("\nSeed,," + String.valueOf(applicationRates[1]));
-        data.append("\nFiber,," + String.valueOf(applicationRates[2]));
-        data.append("\nFertilizer,," + String.valueOf(applicationRates[3]));
-        data.append("\nAdditive,," + String.valueOf(applicationRates[4]));
+        data.append("\nSeed,"+ ((TextView) findViewById(R.id.hydroSeed_seed)).getText().toString()+" ," + String.valueOf(applicationRates[1]));
+        data.append("\nFiber,"+ ((TextView)findViewById(R.id.hydroSeed_fiber)).getText().toString()+" ," + String.valueOf(applicationRates[2]));
+        data.append("\nFertilizer,"+ ((TextView) findViewById(R.id.hydroSeed_fertilizer)).getText().toString()+" ," + String.valueOf(applicationRates[3]));
+        data.append("\nAdditive,"+ ((TextView) findViewById(R.id.hydroSeed_additive)).getText().toString() +" ," + String.valueOf(applicationRates[4]));
         data.append("\n");
-        data.append("\n,Figure 2");
+        data.append("\nHydromulch,Figure 2");
         data.append("\nMaterials,Amount,Rate(lbs/acre)");
-        data.append("\nFiber,," + String.valueOf(applicationRates[5]));
-        data.append("\nTackifier,," + String.valueOf(applicationRates[6]));
+        data.append("\nFiber,"+ ((TextView)findViewById(R.id.hydroMulch_fiber)).getText().toString() +", " + String.valueOf(applicationRates[5]));
+        data.append("\nTackifier,"+ ((TextView)findViewById(R.id.hydroMulch_tackifier)).getText().toString() +"," + String.valueOf(applicationRates[6]));
         data.append("\n");
-        data.append("\n,tanks of X size");
+        data.append("\n"+((TextView) findViewById(R.id.hydroMulch_tankNeeded)).getText().toString() );
+
 
 
         try {
