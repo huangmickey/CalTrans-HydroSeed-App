@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Quick Link URL source:
         String calTransURL = "https://dot.ca.gov/";
         //String stormWaterContactURL = "https://www.waterboards.ca.gov/water_issues/programs/stormwater/contact.html";
-        String weatherURL = "https://weather.com/weather/today/l/3e10208cb1c3765b5072191becf9220634b5a329cb7f75865facb1e55b24f4b6";
+        String weatherURL = "https://www.noaa.gov/";
         //Check navigation item selected from drawer
         switch (item.getItemId()) {
             case R.id.nav_calculate:
