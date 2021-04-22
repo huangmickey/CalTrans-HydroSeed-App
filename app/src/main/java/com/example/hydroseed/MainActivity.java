@@ -85,10 +85,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new FilesFragment()).commit();
                 break;
-            case R.id.nav_setting:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new SettingFragment()).commit();
-                break;
             case R.id.nav_caltrans:
                 //Toast.makeText(this, "Open Web Page: Cal Trans", Toast.LENGTH_SHORT).show();
                 openLink(calTransURL);
