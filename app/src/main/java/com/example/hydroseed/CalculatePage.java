@@ -143,23 +143,23 @@ public class CalculatePage extends AppCompatActivity {
         String projName = nameEditText.getText().toString();
 
         //Check if Number is ### - #######, Check if Nick Name is Alphabetic or empty
+
         boolean isNumberRefValid = false;
         if(numberRef.length() == 9) {
             char[] charArr = numberRef.toCharArray();
             while(!isNumberRefValid) {
                 if(!(charArr[0] >= '0' && charArr[0] <= '9')) break;
                 if(!(charArr[1] >= 'A' && charArr[1] <= 'Z')) break;
-                if(!(charArr[2] == '-')) break;
-                if(!(charArr[3] >= '0' && charArr[0] <= '9')) break;
-                if(!(charArr[4] >= '0' && charArr[0] <= '9')) break;
-                if(!(charArr[5] >= '0' && charArr[0] <= '9')) break;
-                if(!(charArr[6] >= '0' && charArr[0] <= '9')) break;
-                if(!(charArr[7] >= '0' && charArr[0] <= '9')) break;
-                if(!(charArr[8] >= '0' && charArr[0] <= '9')) break;
+                if((charArr[2] != '-')) break;
+                if(!(charArr[3] >= '0' && charArr[3] <= '9')) break;
+                if(!(charArr[4] >= '0' && charArr[4] <= '9')) break;
+                if(!(charArr[5] >= '0' && charArr[5] <= '9')) break;
+                if(!(charArr[6] >= '0' && charArr[6] <= '9')) break;
+                if(!(charArr[7] >= '0' && charArr[7] <= '9')) break;
+                if(!(charArr[8] >= '0' && charArr[8] <= '9')) break;
                 isNumberRefValid = true;
             }
         }
-
         if (isNumberRefValid && (projName.matches("^[a-zA-Z]*$"))) {
             FileOutputStream writeScanner = null;
             try {
