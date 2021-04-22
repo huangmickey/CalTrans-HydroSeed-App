@@ -587,28 +587,44 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <EditText
-                android:id="@+id/calc_number"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/calc_number_text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_column="0"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="@string/a_z"
-                android:inputType="phone"
-                android:background="#d2d2d2"
-                android:layout_margin="1dp"/>
-            <EditText
-                android:id="@+id/calc_name"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/calc_number"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:layout_column="0"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#d2d2d2"
+                    android:digits="0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:gravity="center"
+                    android:hint="@string/a_z"
+                    android:inputType="textCapCharacters"
+                    android:maxLength="9"
+                    tools:ignore="TextFields" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/calc_name_text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_column="1"
-                android:gravity="center"
-                android:hint="@string/project_name_optional"
-                android:inputType="text"
-                android:background="#d2d2d2"
-                android:layout_margin="1dp"/>
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/calc_name"
+                    android:layout_width="206dp"
+                    android:layout_height="50dp"
+                    android:layout_column="1"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#d2d2d2"
+                    android:gravity="center"
+                    android:hint="@string/project_name_optional"
+                    android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
         </TableRow>
     </TableLayout>
     <!--End of Project Number-->
@@ -624,20 +640,21 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <Button
                 android:id="@+id/button_save"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:onClick="save_calc"
                 android:text="@string/save_data"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/button_share"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
                 android:onClick="export"
                 android:text="@string/share_results"
                 android:textSize="16sp" />

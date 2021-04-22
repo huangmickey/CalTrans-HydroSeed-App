@@ -143,7 +143,24 @@ public class CalculatePage extends AppCompatActivity {
         String projName = nameEditText.getText().toString();
 
         //Check if Number is ### - #######, Check if Nick Name is Alphabetic or empty
-        if ((numberRef.matches(("^[0-9\\-]{9}+$"))) && (projName.matches("^[a-zA-Z]*$"))) {
+        boolean isNumberRefValid = false;
+        if(numberRef.length() == 9) {
+            char[] charArr = numberRef.toCharArray();
+            while(!isNumberRefValid) {
+                if(!(charArr[0] >= '0' && charArr[0] <= '9')) break;
+                if(!(charArr[1] >= 'A' && charArr[1] <= 'Z')) break;
+                if(!(charArr[2] == '-')) break;
+                if(!(charArr[3] >= '0' && charArr[0] <= '9')) break;
+                if(!(charArr[4] >= '0' && charArr[0] <= '9')) break;
+                if(!(charArr[5] >= '0' && charArr[0] <= '9')) break;
+                if(!(charArr[6] >= '0' && charArr[0] <= '9')) break;
+                if(!(charArr[7] >= '0' && charArr[0] <= '9')) break;
+                if(!(charArr[8] >= '0' && charArr[0] <= '9')) break;
+                isNumberRefValid = true;
+            }
+        }
+
+        if (isNumberRefValid && (projName.matches("^[a-zA-Z]*$"))) {
             FileOutputStream writeScanner = null;
             try {
                 if (projName.equals("")) {
@@ -174,7 +191,7 @@ public class CalculatePage extends AppCompatActivity {
             startActivity(returnIntent);
 
         } else { // Error with User's File name Number-ProjectName
-            Toast.makeText(this, "Unaccepted Filename:" + numberRef + "_" + projName + "\n File Format: ##-######\nOnly letters allowed for project name!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Unaccepted Filename:" + numberRef + "_" + projName + "\n File Format: #A-######\nOnly letters allowed for project name!", Toast.LENGTH_SHORT).show();
         }
     }
 
