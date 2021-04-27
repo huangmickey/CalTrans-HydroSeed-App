@@ -29,6 +29,7 @@
             android:foreground="@drawable/compostar15px"
             android:foregroundGravity="center"
             android:minHeight="40dp"
+            android:paddingStart="15dp"
             tools:ignore="RtlSymmetry" />
 
         <TableRow
@@ -82,6 +83,7 @@
             android:foreground="@drawable/hydroseedar15px"
             android:foregroundGravity="center"
             android:minHeight="40dp"
+            android:paddingStart="15dp"
             tools:ignore="RtlSymmetry" />
 
         <TableRow
@@ -226,8 +228,8 @@
             android:foreground="@drawable/hydromulchar15px"
             android:foregroundGravity="center"
             android:minHeight="40dp"
-            tools:ignore="RtlSymmetry,UnusedAttribute"
-            tools:targetApi="m" />
+            android:paddingStart="15dp"
+            tools:ignore="RtlSymmetry" />
 
         <TableRow
             android:layout_marginStart="10dp"

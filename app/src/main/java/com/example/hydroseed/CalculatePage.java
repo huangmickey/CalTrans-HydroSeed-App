@@ -8,14 +8,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class CalculatePage extends AppCompatActivity {
     private static String projectName = "";
     private static final String historyData = "historyData.txt";
     EditText nameEditText, numbEditText;
-// ADD ALERT DIALOG TO ASK USER TO SAVE / EXPORT FILE AS .txt, .csv, or BOTH
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,31 +138,51 @@ public class CalculatePage extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
-//ASK USER IF THE CALC SHOULD BE SAVED AS .txt or .csv or both?
+
+    private boolean validateCharacter(char c) {
+        return (c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z');
+    }
+
     public void save_calc(View v) {
         String numberRef = numbEditText.getText().toString();
         String projName = nameEditText.getText().toString();
 
-        //Check if Number is ### - #######, Check if Nick Name is Alphabetic or empty
+        //Check if Number is ## - #######, Check if Nick Name is Alphabetic or empty
 
         boolean isNumberRefValid = false;
-        if (numberRef.length() == 9) {
+        StringBuilder errorMessageNumberRef = new StringBuilder();
+
+        if(numberRef.length() == 9) {
             char[] charArr = numberRef.toCharArray();
-            while (!isNumberRefValid) {
-                if (!(charArr[0] >= '0' && charArr[0] <= '9')) break;
-                if (!(charArr[1] >= 'A' && charArr[1] <= 'Z')) break;
-                if ((charArr[2] != '-')) break;
-                if (!(charArr[3] >= '0' && charArr[3] <= '9')) break;
-                if (!(charArr[4] >= '0' && charArr[4] <= '9')) break;
-                if (!(charArr[5] >= '0' && charArr[5] <= '9')) break;
-                if (!(charArr[6] >= '0' && charArr[6] <= '9')) break;
-                if (!(charArr[7] >= '0' && charArr[7] <= '9')) break;
-                if (!(charArr[8] >= '0' && charArr[8] <= '9')) break;
+            while(!isNumberRefValid) {
+                if((charArr[0] >= '2') || charArr[0] == '-') {
+                    errorMessageNumberRef.append("First two entries must be digits and between 1-12");
+                    break;
+                }
+                if(charArr[0] == '1' && charArr[1] >= '3' || charArr[1] == '-') {
+                    errorMessageNumberRef.append("First two entries must be digits and between 1-12");
+                    break;
+                }
+                if(charArr[0] == '0' && charArr[1] > '9') {
+                    errorMessageNumberRef.append("First two entries must be digits and between 1-12");
+                }
+                if((charArr[2] != '-')) {
+                    errorMessageNumberRef.append("Must include a dash after the first two digits!");
+                    break;
+                }
+                if(!validateCharacter(charArr[3])) break;
+                if(!validateCharacter(charArr[4])) break;
+                if(!validateCharacter(charArr[5])) break;
+                if(!validateCharacter(charArr[6])) break;
+                if(!validateCharacter(charArr[7])) break;
+                if(!validateCharacter(charArr[8])) break;
                 isNumberRefValid = true;
             }
+        } else {
+            errorMessageNumberRef.append("Must be exactly 9 characters");
         }
+
         if (isNumberRefValid && (projName.matches("^[a-zA-Z]*$"))) {
             FileOutputStream writeScanner = null;
             try {
@@ -170,7 +191,7 @@ public class CalculatePage extends AppCompatActivity {
                 } else {
                     projectName = String.format("%s_%s.txt", numberRef, projName);
                 }
-                String saveText = String.format("Project Number: %s\nProject Name: %s\n%s", numberRef, projName, taggedFileFormat());//fileOutputFormat());
+                String saveText = String.format("Project Number: %s\nProject Name: %s\n%s", numberRef, projName, fileOutputFormat());
                 writeScanner = openFileOutput(projectName, MODE_PRIVATE);
                 writeScanner.write(saveText.getBytes());
                 Toast.makeText(this, "Saved to " + getFilesDir() + "/" + projectName, Toast.LENGTH_LONG).show();
@@ -193,13 +214,14 @@ public class CalculatePage extends AppCompatActivity {
             startActivity(returnIntent);
 
         } else { // Error with User's File name Number-ProjectName
-            Toast.makeText(this, "Unaccepted Filename:" + numberRef + "_" + projName + "\n File Format: #A-######\nOnly letters allowed for project name!", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(this, "Unaccepted Filename: " + numberRef +
+                    "\nFile Format: ##-######\n" + errorMessageNumberRef, Toast.LENGTH_LONG).show();
         }
     }
-// Saves data in tagged file, to make file manager viewer easier
-    public void save_historyData() throws FileNotFoundException {
-        String saveHistory = taggedFileFormat();//fileOutputFormat();
 
+    public void save_historyData() throws FileNotFoundException {
+        String saveHistory = fileOutputFormat();
         FileOutputStream historyScanner = null;
         try {
             historyScanner = openFileOutput(historyData, MODE_APPEND);
@@ -212,29 +234,30 @@ public class CalculatePage extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-//CREATE DIALOG OPTION TO EXPORT .txt , .csv or both as email or both
+
     public void export(View view) {
 
         StringBuilder data = new StringBuilder();
-        data.append("Acres: " + String.valueOf(Global.userInputAcres) + ", Tank Size: " + tankSize + " Gallons");
+        data.append("Acres: " + String.valueOf(Global.userInputAcres)+", Tank Size: " + tankSize + " Gallons");
         data.append("\nMaterials,Input,Output");
-        data.append("\nCompost," + String.valueOf(applicationRates[0]) + "," + ((TextView) findViewById(R.id.compost)).getText().toString());
-        data.append("\nHydroseed,Refer to Figure 1," + ((TextView) findViewById(R.id.hydroSeed)).getText().toString());
-        data.append("\nHydromulch,Refer to Figure 2," + ((TextView) findViewById(R.id.hydroMulch)).getText().toString());
+        data.append("\nCompost," + String.valueOf(applicationRates[0]) + ","+ ((TextView)findViewById(R.id.compost)).getText().toString() );
+        data.append("\nHydroseed,Refer to Figure 1,"+((TextView) findViewById(R.id.hydroSeed)).getText().toString() );
+        data.append("\nHydromulch,Refer to Figure 2," +((TextView) findViewById(R.id.hydroMulch)).getText().toString());
         data.append("\n");
         data.append("\nHydroseed,Figure 1");
         data.append("\nMaterials,Amount,Rate(lbs/acre)");
-        data.append("\nSeed," + ((TextView) findViewById(R.id.hydroSeed_seed)).getText().toString() + " ," + String.valueOf(applicationRates[1]));
-        data.append("\nFiber," + ((TextView) findViewById(R.id.hydroSeed_fiber)).getText().toString() + " ," + String.valueOf(applicationRates[2]));
-        data.append("\nFertilizer," + ((TextView) findViewById(R.id.hydroSeed_fertilizer)).getText().toString() + " ," + String.valueOf(applicationRates[3]));
-        data.append("\nAdditive," + ((TextView) findViewById(R.id.hydroSeed_additive)).getText().toString() + " ," + String.valueOf(applicationRates[4]));
+        data.append("\nSeed,"+ ((TextView) findViewById(R.id.hydroSeed_seed)).getText().toString()+" ," + String.valueOf(applicationRates[1]));
+        data.append("\nFiber,"+ ((TextView)findViewById(R.id.hydroSeed_fiber)).getText().toString()+" ," + String.valueOf(applicationRates[2]));
+        data.append("\nFertilizer,"+ ((TextView) findViewById(R.id.hydroSeed_fertilizer)).getText().toString()+" ," + String.valueOf(applicationRates[3]));
+        data.append("\nAdditive,"+ ((TextView) findViewById(R.id.hydroSeed_additive)).getText().toString() +" ," + String.valueOf(applicationRates[4]));
         data.append("\n");
         data.append("\nHydromulch,Figure 2");
         data.append("\nMaterials,Amount,Rate(lbs/acre)");
-        data.append("\nFiber," + ((TextView) findViewById(R.id.hydroMulch_fiber)).getText().toString() + ", " + String.valueOf(applicationRates[5]));
-        data.append("\nTackifier," + ((TextView) findViewById(R.id.hydroMulch_tackifier)).getText().toString() + "," + String.valueOf(applicationRates[6]));
+        data.append("\nFiber,"+ ((TextView)findViewById(R.id.hydroMulch_fiber)).getText().toString() +", " + String.valueOf(applicationRates[5]));
+        data.append("\nTackifier,"+ ((TextView)findViewById(R.id.hydroMulch_tackifier)).getText().toString() +"," + String.valueOf(applicationRates[6]));
         data.append("\n");
-        data.append("\n" + ((TextView) findViewById(R.id.hydroMulch_tankNeeded)).getText().toString());
+        data.append("\n"+((TextView) findViewById(R.id.hydroMulch_tankNeeded)).getText().toString() );
+
 
 
         try {
@@ -260,81 +283,17 @@ public class CalculatePage extends AppCompatActivity {
         }
     }
 
-    public String taggedFileFormat() {
-        StringBuilder fileFormat = new StringBuilder();
-        String t1 = taggedTableBuilder(1);
-        String t2 = taggedTableBuilder(2);
-        String t3 = taggedTableBuilder(3);
-        return fileFormat.append(t1).append(t2).append(t3).toString();
-    }
-
-    public String taggedTableBuilder(int tableType) {
-        String table = "";
-        switch (tableType) {
-            case (1):
-                return String.format("<T \n" +
-                                "<H %s H>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                " T>\n",
-                        ((TextView) findViewById(R.id.acreage)).getText().toString(),
-                        "Materials", "INPUT", "OUTPUT",
-                        "Compost", ((TextView) findViewById(R.id.textRate0)).getText().toString(), ((TextView) findViewById(R.id.compost)).getText().toString(),
-                        "Hydroseed", "Refer to Figure 1", ((TextView) findViewById(R.id.hydroSeed)).getText().toString(),
-                        "Hydromulch", "Refer to Figure 2", ((TextView) findViewById(R.id.hydroMulch)).getText().toString(),
-                        " ", " ", " "
-                );
-            case (2):
-                return String.format("<T \n" +
-                                "<H %s H>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                " T>\n",
-                        "FIG 1 - HYDROSEED",
-                        "Materials", "Amount", "Rate",
-                        "SEED", ((TextView) findViewById(R.id.hydroSeed_seed)).getText().toString(), ((TextView) findViewById(R.id.textRate1)).getText().toString(),
-                        "FIBER", ((TextView) findViewById(R.id.hydroSeed_fiber)).getText().toString(), ((TextView) findViewById(R.id.textRate2)).getText().toString(),
-                        "FERTILIZER", ((TextView) findViewById(R.id.hydroSeed_fertilizer)).getText().toString(), ((TextView) findViewById(R.id.textRate3)).getText().toString(),
-                        "ADDITIVE", ((TextView) findViewById(R.id.hydroSeed_additive)).getText().toString(), ((TextView) findViewById(R.id.textRate4)).getText().toString()
-                );
-            case (3):
-                return String.format("<T \n" +
-                                "<H %s H>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                "<R %s:%s:%s R>\n" +
-                                " T>\n",
-                        "FIG 2 - HYDROMULCH",
-                        "Materials", "Amount", "Rate",
-                        "FIBER", ((TextView) findViewById(R.id.hydroMulch_fiber)).getText().toString(), ((TextView) findViewById(R.id.textRate5)).getText().toString(),
-                        "TACKIFIER", ((TextView) findViewById(R.id.hydroMulch_tackifier)).getText().toString(), ((TextView) findViewById(R.id.textRate6)).getText().toString(),
-                        " ", ((TextView) findViewById(R.id.hydroMulch_tankNeeded)).getText().toString(), " ",
-                        " ", " ", " "
-                );
-        }
-        return table;
-    }
-
-    //Creates a formatted output file using the calculation details, arranges a table like format
-    //Use to export data, unlike tagged this is a table formatted output
+    //Creates a formatted output file using the calculation details, arrages a table like format
     public String fileOutputFormat() {
         //Longest string on average used to define whitespace padding
         String tankNeeded = ((TextView) findViewById(R.id.hydroMulch_tankNeeded)).getText().toString();
-        int whiteSpace = -tankNeeded.length();
+        int whiteSpace = - tankNeeded.length();
 
         String calculationAreaInput = buildString(whiteSpace, "",
-                ((TextView) findViewById(R.id.acreage)).getText().toString(), "");
-        String calculationTableHeader = buildString(whiteSpace, "Materials", "Input", "Output");
-        String calculationCompost = buildString(whiteSpace, "Compost", ((TextView) findViewById(R.id.textRate0)).getText().toString(),
-                ((TextView) findViewById(R.id.compost)).getText().toString());
+                ((TextView)findViewById(R.id.acreage)).getText().toString(), "");
+        String calculationTableHeader = buildString(whiteSpace,"Materials","Input","Output");
+        String calculationCompost = buildString(whiteSpace,"Compost", ((TextView)findViewById(R.id.textRate0)).getText().toString(),
+                ((TextView)findViewById(R.id.compost)).getText().toString());
         String calculationHydroSeed = buildString(whiteSpace, "HydroSeed", "Refer to Fig 1",
                 ((TextView) findViewById(R.id.hydroSeed)).getText().toString());
         String calculationHydroMulch = buildString(whiteSpace, "HydroMulch", "Refer to Fig 2",
@@ -343,35 +302,35 @@ public class CalculatePage extends AppCompatActivity {
                 calculationCompost, calculationHydroSeed, calculationHydroMulch);
 
         String hydroSeedTableName = buildString(whiteSpace, "", "Figure 1", "");
-        String hydroSeedHeader = buildString(whiteSpace, "Materials", "Amount", "Rate");
-        String seedAmount = buildString(whiteSpace, "Seed",
+        String hydroSeedHeader = buildString(whiteSpace, "Materials", "Amount","Rate");
+        String seedAmount= buildString(whiteSpace, "Seed",
                 ((TextView) findViewById(R.id.hydroSeed_seed)).getText().toString(),
-                ((TextView) findViewById(R.id.textRate1)).getText().toString());
-        String hydroSeedFiber = buildString(whiteSpace, "Fiber",
-                ((TextView) findViewById(R.id.hydroSeed_fiber)).getText().toString(),
-                ((TextView) findViewById(R.id.textRate2)).getText().toString());
-        String hydroSeedFertilizer = buildString(whiteSpace, "Fertilizer",
+                ((TextView)findViewById(R.id.textRate1)).getText().toString());
+        String hydroSeedFiber= buildString(whiteSpace, "Fiber",
+                ((TextView)findViewById(R.id.hydroSeed_fiber)).getText().toString(),
+                ((TextView)findViewById(R.id.textRate2)).getText().toString());
+        String hydroSeedFertilizer= buildString(whiteSpace, "Fertilizer",
                 ((TextView) findViewById(R.id.hydroSeed_fertilizer)).getText().toString(),
-                ((TextView) findViewById(R.id.textRate3)).getText().toString());
-        String hydroSeedAdditive = buildString(whiteSpace, "Additive",
+                ((TextView)findViewById(R.id.textRate3)).getText().toString());
+        String hydroSeedAdditive= buildString(whiteSpace, "Additive",
                 ((TextView) findViewById(R.id.hydroSeed_additive)).getText().toString(),
-                ((TextView) findViewById(R.id.textRate4)).getText().toString());
+                ((TextView)findViewById(R.id.textRate4)).getText().toString());
         String hydroSeedTable = String.format("%s%s%s%s%s%s\n", hydroSeedTableName, hydroSeedHeader,
                 seedAmount, hydroSeedFiber, hydroSeedFertilizer, hydroSeedAdditive);
 
         String hydroMulchTableName = buildString(whiteSpace, "", "Figure 2", "");
-        String hydroMulchHeader = buildString(whiteSpace, "Materials", "Amount", "Rate");
+        String hydroMulchHeader = buildString(whiteSpace, "Materials", "Amount" , "Rate");
         String hydroMulchFiber = buildString(whiteSpace, "Fiber",
-                ((TextView) findViewById(R.id.hydroMulch_fiber)).getText().toString(),
-                ((TextView) findViewById(R.id.textRate5)).getText().toString());
+                ((TextView)findViewById(R.id.hydroMulch_fiber)).getText().toString(),
+                ((TextView)findViewById(R.id.textRate5)).getText().toString());
         String hydroMulchTackifier = buildString(whiteSpace, "Tackifier",
-                ((TextView) findViewById(R.id.hydroMulch_tackifier)).getText().toString(),
-                ((TextView) findViewById(R.id.textRate6)).getText().toString());
+                ((TextView)findViewById(R.id.hydroMulch_tackifier)).getText().toString(),
+                ((TextView)findViewById(R.id.textRate6)).getText().toString());
         String hydroMulchTable = String.format("%s%s%s%s\n", hydroMulchTableName, hydroMulchHeader,
                 hydroMulchFiber, hydroMulchTackifier);
         String hydroMulchTanks = buildString(whiteSpace, " ",
-                tankNeeded, " ");
-        return String.format("%s%s\n%s\n%s%s\n\n\n\n", calculationAreaInput, calculationTable, hydroSeedTable, hydroMulchTable, hydroMulchTanks);
+                tankNeeded," ");
+        return String.format("%s%s\n%s\n%s%s\n\n\n\n",calculationAreaInput, calculationTable, hydroSeedTable, hydroMulchTable, hydroMulchTanks);
     }
 
     //Builds string based on padding whitespace and 3 strings to be separated by pipes
