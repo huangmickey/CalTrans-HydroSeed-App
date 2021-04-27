@@ -110,8 +110,9 @@
                 android:background="#d2d2d2"
                 android:gravity="center"
                 android:text="@string/yards_3"
-                android:textColor="#D60505"
-                android:textSize="16sp" />
+                android:textColor="#0A43D1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </TableRow>
     <!--End of Compost Layer-->
     <!--Hydro Seed Layer-->
@@ -148,7 +149,8 @@
                 android:background="#d2d2d2"
                 android:gravity="center"
                 android:text="@string/lbs"
-                android:textColor="#D60505"
+                android:textColor="#0A43D1"
+                android:textStyle="bold"
                 android:textSize="16sp" />
         </TableRow>
     <!--End of Hydro Seed Layer-->
@@ -187,7 +189,8 @@
                 android:background="#d2d2d2"
                 android:gravity="center"
                 android:text="@string/lbs"
-                android:textColor="#D60505"
+                android:textColor="#0A43D1"
+                android:textStyle="bold"
                 android:textSize="16sp" />
             </TableRow>
     </TableLayout>
@@ -283,7 +286,8 @@
                 android:background="#d2d2d2"
                 android:gravity="center"
                 android:text="@string/lbs"
-                android:textColor="#D60505"
+                android:textColor="#0A43D1"
+                android:textStyle="bold"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/textRate1"
@@ -320,7 +324,8 @@
                 android:background="#d2d2d2"
                 android:gravity="center"
                 android:text="@string/lbs"
-                android:textColor="#D60505"
+                android:textColor="#0A43D1"
+                android:textStyle="bold"
                 android:textSize="16sp" />
 
             <TextView
@@ -358,7 +363,8 @@
                 android:background="#d2d2d2"
                 android:gravity="center"
                 android:text="@string/bags_50lbs"
-                android:textColor="#D60505"
+                android:textColor="#0A43D1"
+                android:textStyle="bold"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/textRate3"
@@ -395,7 +401,8 @@
                 android:background="#d2d2d2"
                 android:gravity="center"
                 android:text="@string/lbs"
-                android:textColor="#D60505"
+                android:textColor="#0A43D1"
+                android:textStyle="bold"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/textRate4"
@@ -501,7 +508,8 @@
                 android:background="#d2d2d2"
                 android:gravity="center"
                 android:text="@string/lbs"
-                android:textColor="#D60505"
+                android:textColor="#0A43D1"
+                android:textStyle="bold"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/textRate5"
@@ -538,7 +546,8 @@
                 android:background="#d2d2d2"
                 android:gravity="center"
                 android:text="@string/lbs"
-                android:textColor="#D60505"
+                android:textColor="#0A43D1"
+                android:textStyle="bold"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/textRate6"
@@ -602,7 +611,7 @@
                     android:layout_weight="1"
                     android:background="#d2d2d2"
                     android:digits="0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    android:gravity="center"
+                    android:gravity="bottom|center"
                     android:hint="@string/a_z"
                     android:inputType="textCapCharacters"
                     android:maxLength="9"
@@ -648,7 +657,14 @@
                 android:layout_column="0"
                 android:onClick="save_calc"
                 android:text="@string/save_data"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:shadowColor="#A8A8A8"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:background="@drawable/button_background"
+                app:backgroundTint="@color/design_default_color_background"
+                app:backgroundTintMode="multiply"/>
 
             <Button
                 android:id="@+id/button_share"
@@ -657,7 +673,14 @@
                 android:layout_column="2"
                 android:onClick="export"
                 android:text="@string/share_results"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:shadowColor="#A8A8A8"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:background="@drawable/button_background"
+                app:backgroundTint="@color/design_default_color_background"
+                app:backgroundTintMode="multiply"/>
         </TableRow>
 <!--End of Save Button-->
 </TableLayout>
