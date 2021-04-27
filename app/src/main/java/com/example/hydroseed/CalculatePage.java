@@ -191,7 +191,7 @@ public class CalculatePage extends AppCompatActivity {
                 } else {
                     projectName = String.format("%s_%s.txt", numberRef, projName);
                 }
-                String saveText = String.format("Project Number: %s\nProject Name: %s\n%s", numberRef, projName, fileOutputFormat());
+                String saveText = String.format("Project Number: %s\nProject Name: %s\n%s", numberRef, projName, taggedFileFormat());
                 writeScanner = openFileOutput(projectName, MODE_PRIVATE);
                 writeScanner.write(saveText.getBytes());
                 Toast.makeText(this, "Saved to " + getFilesDir() + "/" + projectName, Toast.LENGTH_LONG).show();
@@ -221,7 +221,7 @@ public class CalculatePage extends AppCompatActivity {
     }
 
     public void save_historyData() throws FileNotFoundException {
-        String saveHistory = fileOutputFormat();
+        String saveHistory = taggedFileFormat();
         FileOutputStream historyScanner = null;
         try {
             historyScanner = openFileOutput(historyData, MODE_APPEND);
@@ -349,8 +349,66 @@ public class CalculatePage extends AppCompatActivity {
         }
         return new String(b);
     }
+    public String taggedFileFormat() {
+        StringBuilder fileFormat = new StringBuilder();
+        String t1 = taggedTableBuilder(1);
+        String t2 = taggedTableBuilder(2);
+        String t3 = taggedTableBuilder(3);
+        return fileFormat.append(t1).append(t2).append(t3).toString();
+    }
 
-    public void shareData(View v) {
-
+    public String taggedTableBuilder(int tableType) {
+        String table = "";
+        switch (tableType) {
+            case (1):
+                return String.format("<T \n" +
+                                "<H %s H>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                " T>\n",
+                        ((TextView) findViewById(R.id.acreage)).getText().toString(),
+                        "Materials", "INPUT", "OUTPUT",
+                        "Compost", ((TextView) findViewById(R.id.textRate0)).getText().toString(), ((TextView) findViewById(R.id.compost)).getText().toString(),
+                        "Hydroseed", "Refer to Figure 1", ((TextView) findViewById(R.id.hydroSeed)).getText().toString(),
+                        "Hydromulch", "Refer to Figure 2", ((TextView) findViewById(R.id.hydroMulch)).getText().toString(),
+                        " ", " ", " "
+                );
+            case (2):
+                return String.format("<T \n" +
+                                "<H %s H>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                " T>\n",
+                        "FIG 1 - HYDROSEED",
+                        "Materials", "Amount", "Rate",
+                        "SEED", ((TextView) findViewById(R.id.hydroSeed_seed)).getText().toString(), ((TextView) findViewById(R.id.textRate1)).getText().toString(),
+                        "FIBER", ((TextView) findViewById(R.id.hydroSeed_fiber)).getText().toString(), ((TextView) findViewById(R.id.textRate2)).getText().toString(),
+                        "FERTILIZER", ((TextView) findViewById(R.id.hydroSeed_fertilizer)).getText().toString(), ((TextView) findViewById(R.id.textRate3)).getText().toString(),
+                        "ADDITIVE", ((TextView) findViewById(R.id.hydroSeed_additive)).getText().toString(), ((TextView) findViewById(R.id.textRate4)).getText().toString()
+                );
+            case (3):
+                return String.format("<T \n" +
+                                "<H %s H>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                "<R %s:%s:%s R>\n" +
+                                " T>\n",
+                        "FIG 2 - HYDROMULCH",
+                        "Materials", "Amount", "Rate",
+                        "FIBER", ((TextView) findViewById(R.id.hydroMulch_fiber)).getText().toString(), ((TextView) findViewById(R.id.textRate5)).getText().toString(),
+                        "TACKIFIER", ((TextView) findViewById(R.id.hydroMulch_tackifier)).getText().toString(), ((TextView) findViewById(R.id.textRate6)).getText().toString(),
+                        " ", ((TextView) findViewById(R.id.hydroMulch_tankNeeded)).getText().toString(), " ",
+                        " ", " ", " "
+                );
+        }
+        return table;
     }
 }
