@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HydroSeed</string>
+    <string name="app_name">Hydroseed</string>
     <string name="calculate">Calculate</string>
 
     <string-array name="Seeds">

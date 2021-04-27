@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:clipToPadding="true"
+        android:fadeScrollbars="false">
+
+        <TextView
+            android:id="@+id/tableTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="TITTLE"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/row1_col1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            android:text="MATERIALS" />
+
+        <TextView
+            android:id="@+id/row2_col1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="60dp"
+            android:text="COMPOST/SEED/FIBER" />
+
+        <TextView
+            android:id="@+id/row3_col1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="110dp"
+            android:text="HYDROSEED/FIBER/TACKIFIER" />
+
+        <TextView
+            android:id="@+id/row4_col1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="160dp"
+            android:text="HYDROMULCH/FERTILIZER/Tanks Needed" />
+
+        <TextView
+            android:id="@+id/row5_col1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="210dp"
+            android:text="Additive" />
+
+        <TextView
+            android:id="@+id/row1_col2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/row1_col1"
+            android:layout_toRightOf="@+id/row1_col1"
+            android:text="INPUT/AMOUNT" />
+
+        <TextView
+            android:id="@+id/row2_col2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="60dp"
+            android:layout_toEndOf="@+id/row2_col1"
+            android:layout_toRightOf="@+id/row2_col1"
+            android:text="(CY/ACRES)||(LBS)" />
+
+        <TextView
+            android:id="@+id/row3_col2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="110dp"
+            android:layout_toEndOf="@+id/row3_col1"
+            android:layout_toRightOf="@+id/row3_col1"
+            android:text="REFER to FIG X/LBS" />
+
+        <TextView
+            android:id="@+id/row4_col2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="160dp"
+            android:layout_toEndOf="@+id/row4_col1"
+            android:layout_toRightOf="@+id/row4_col1"
+            android:text="REFER to FIG X/LBS" />
+
+        <TextView
+            android:id="@+id/row5_col2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="210dp"
+            android:layout_toEndOf="@+id/row5_col1"
+            android:layout_toRightOf="@+id/row5_col1"
+            android:text="LBS" />
+
+        <TextView
+            android:id="@+id/row1_col3"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/row1_col2"
+            android:layout_toRightOf="@+id/row1_col2"
+            android:text="OUTPUT/RATES" />
+
+        <TextView
+            android:id="@+id/row2_col3"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="60dp"
+            android:layout_toEndOf="@+id/row2_col2"
+            android:layout_toRightOf="@+id/row2_col2"
+            android:text="LBS/ACRES" />
+
+        <TextView
+            android:id="@+id/row3_col3"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="110dp"
+            android:layout_toEndOf="@+id/row3_col2"
+            android:layout_toRightOf="@+id/row3_col2"
+            android:text="LBS/ACRES" />
+
+        <TextView
+            android:id="@+id/row4_col3"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="160dp"
+            android:layout_toEndOf="@+id/row4_col2"
+            android:layout_toRightOf="@+id/row4_col2"
+            android:text="LBS/ACRES" />
+
+        <TextView
+            android:id="@+id/row5_col3"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableTitle"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="210dp"
+            android:layout_toEndOf="@+id/row5_col2"
+            android:layout_toRightOf="@+id/row5_col2"
+            android:text="LBS/ACRES" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

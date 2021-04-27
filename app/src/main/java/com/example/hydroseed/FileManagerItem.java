@@ -11,13 +11,6 @@ public class FileManagerItem {
         this.filePath = filePath;
     }
 
-    public void showFileContent(String text) {
-        //This calls a new activity to display file's content
-        //Needs extension, and maybe add share module Enrique had on Calculate page
-        //Make sure new activity / layout is scrollable to accommodate file size
-        fileName = text;//placeholder code
-    }
-
     //Get Methods for cardView layout
     public int getFileIcon() {
         return this.fileIcon;
