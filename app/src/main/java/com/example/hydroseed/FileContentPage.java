@@ -27,7 +27,7 @@ public class FileContentPage extends AppCompatActivity {
     private RecyclerView rRecyclerView;
     private RecyclerView.Adapter rAdapter;
     private RecyclerView.LayoutManager rLayoutManager;
-
+    private String fileName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,7 +37,8 @@ public class FileContentPage extends AppCompatActivity {
         initVars();
         createFileManagerItemList();
         buildRecyclerView();
-        showFileContent(b.getString("fileName"));
+        fileName = b.getString("fileName");
+        showFileContent(fileName);
         //Implement ON CLICK LISTENER to share file
     }
 
@@ -108,12 +109,12 @@ public class FileContentPage extends AppCompatActivity {
                 } else if (textLine.contains("<R ")) {
                     String rowData = textLine.substring(textLine.indexOf("<R ") + 3, textLine.indexOf(" R>"));
                     //Toast.makeText(this, rowData, Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(this, rowData.substring(0, rowData.indexOf(":")), Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(this,  rowData.substring(rowData.indexOf(":")+1, rowData.lastIndexOf(":")), Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(this, rowData.substring(rowData.lastIndexOf(":")+1), Toast.LENGTH_SHORT).show();
-                    rowByCol[rowCounter][0] = rowData.substring(0, rowData.indexOf(":"));
-                    rowByCol[rowCounter][1] = rowData.substring(rowData.indexOf(":")+1, rowData.lastIndexOf(":"));
-                    rowByCol[rowCounter][2] = rowData.substring(rowData.lastIndexOf(":")+1);
+                    //Toast.makeText(this, rowData.substring(0, rowData.indexOf(",")), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this,  rowData.substring(rowData.indexOf(",")+1, rowData.lastIndexOf(",")), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, rowData.substring(rowData.lastIndexOf(",")+1), Toast.LENGTH_SHORT).show();
+                    rowByCol[rowCounter][0] = rowData.substring(0, rowData.indexOf(","));
+                    rowByCol[rowCounter][1] = rowData.substring(rowData.indexOf(",")+1, rowData.lastIndexOf(","));
+                    rowByCol[rowCounter][2] = rowData.substring(rowData.lastIndexOf(",")+1);
                     rowCounter++; // updated for next row
                 } else if (textLine.contains(" T>")) {
                     //END OF TABLE add to LIST, reset counter;
@@ -142,5 +143,7 @@ public class FileContentPage extends AppCompatActivity {
             }
         }
     }
+
+
 
 }
