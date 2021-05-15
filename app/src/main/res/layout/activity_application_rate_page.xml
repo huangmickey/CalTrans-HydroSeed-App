@@ -300,11 +300,11 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
         android:onClick="goToCalculatePage"
-        android:text="@string/get_results"
         android:shadowColor="#A8A8A8"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
+        android:text="@string/get_results"
         app:backgroundTint="@color/design_default_color_background"
         app:backgroundTintMode="multiply"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -321,16 +321,27 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/button_background"
         android:onClick="getDefaultRates"
-        android:text="@string/revert_to_default_rates"
         android:shadowColor="#A8A8A8"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
+        android:text="@string/revert_to_default_rates"
         app:backgroundTint="@color/design_default_color_background"
         app:backgroundTintMode="multiply"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/getResults" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="75dp"
+        app:layout_constraintBottom_toBottomOf="@+id/TableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/getResults"
+        app:srcCompat="@drawable/caltrans_svg50opacity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
