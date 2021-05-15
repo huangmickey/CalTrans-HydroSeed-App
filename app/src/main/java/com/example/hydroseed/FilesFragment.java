@@ -3,12 +3,14 @@ package com.example.hydroseed;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.inputmethod.EditorInfo;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,8 +21,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static android.widget.Toast.makeText;
 
@@ -41,7 +43,30 @@ public class FilesFragment extends Fragment {
         initFileDirectory(rootPath);
         createFileManagerItemList();
         buildRecyclerView(view);
+        setHasOptionsMenu(true);
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.actionbar_search, menu);
+        MenuItem searchItem = menu.findItem(R.id.menu_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchView.clearFocus();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                rAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     public void initFileDirectory(String rootPath) {
@@ -93,10 +118,13 @@ public class FilesFragment extends Fragment {
         String fileExtensionDelimiter = ".";
         String fileName = absolutePath.substring(absolutePath.indexOf(fileNameDelimiter) + fileNameDelimiter.length());
         String fileExtension = absolutePath.substring(absolutePath.lastIndexOf(fileExtensionDelimiter) + fileExtensionDelimiter.length());
+        File f = new File(absolutePath);
+        Date lastMod = new Date(f.lastModified());
+        String fileMod = lastMod.toString();
         if (fileExtension.equals("csv")) {
-            FileManagerItemList.add(new FileManagerItem(R.drawable.ic_csv_extension, fileName, absolutePath));
+            FileManagerItemList.add(new FileManagerItem(R.drawable.ic_csv_extension, fileName, absolutePath, fileMod));
         } else if (fileExtension.equals("txt")) {
-            FileManagerItemList.add(new FileManagerItem(R.drawable.ic_text_extension, fileName, absolutePath));
+            FileManagerItemList.add(new FileManagerItem(R.drawable.ic_text_extension, fileName, absolutePath, fileMod));
         }
         //Toast.makeText(this.getContext(), "FILE NAME: " + fileName, Toast.LENGTH_LONG).show();
         //Toast.makeText(this.getContext(), "FILE EXTEN: " + fileExtension, Toast.LENGTH_LONG).show();

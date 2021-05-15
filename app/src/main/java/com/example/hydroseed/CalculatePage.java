@@ -1,5 +1,6 @@
 package com.example.hydroseed;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
@@ -9,6 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,7 +34,6 @@ public class CalculatePage extends AppCompatActivity {
     private static String projectName = "";
     private static final String historyData = "historyData.txt";
     EditText nameEditText, numbEditText;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,28 +200,24 @@ public class CalculatePage extends AppCompatActivity {
                                         //Toast.makeText(CalculatePage.this, "Chosen Extension " + extension, Toast.LENGTH_SHORT).show();
                                         if (extension.equals(".csv")) {
                                             contentCSV = taggedFileFormat(true); // removes all tags
-                                            writeToFile(fileNameCSV, contentCSV); // write file
+                                            writeToFile(fileNameCSV, contentCSV, true); // write file
                                             shareFile(fileNameCSV); // share file
-
                                         } else {
                                             contentTXT = fileOutputFormat();
-                                            writeToFile(fileNameTXT, contentTXT);
+                                            writeToFile(fileNameTXT, contentTXT, true);
                                             shareFile(fileNameTXT);
 
                                         }
                                         break;
                                     case 2:
                                         contentCSV = taggedFileFormat(true); // removes all tags
-                                        writeToFile(fileNameCSV, contentCSV); // write file
+                                        writeToFile(fileNameCSV, contentCSV,true); // write file
                                         contentTXT = fileOutputFormat();
-                                        writeToFile(fileNameTXT, contentTXT);
+                                        writeToFile(fileNameTXT, contentTXT, true);
                                         shareFile(fileNameCSV, fileNameTXT);
                                         break;
                                 }
                             }
-                            Intent returnIntent = new Intent(CalculatePage.this, MainActivity.class);
-                            startActivity(returnIntent);
-                            dialog.dismiss();
                             //Write files (fileOutput for txt) (tagged file without Headers)
                         } else {
                             //Toast.makeText(CalculatePage.this, "SAVE", Toast.LENGTH_SHORT).show();
@@ -243,23 +241,24 @@ public class CalculatePage extends AppCompatActivity {
                                         //Toast.makeText(CalculatePage.this, "Chosen Extension " + extension, Toast.LENGTH_SHORT).show();
                                         if (extension.equals(".csv")) {
                                             contentCSV = taggedFileFormat(false); // removes all tags
-                                            writeToFile(fileNameCSV, contentCSV); // write file
+                                            writeToFile(fileNameCSV, contentCSV, false); // write file
+                                            returnHome();
                                         } else {
                                             contentTXT = taggedFileFormat(false);
-                                            writeToFile(fileNameTXT, contentTXT);
+                                            writeToFile(fileNameTXT, contentTXT, false);
+                                            returnHome();
                                         }
                                         break;
                                     case 2:
                                         contentCSV = taggedFileFormat(false); // removes all tags
-                                        writeToFile(fileNameCSV, contentCSV); // write file
+                                        writeToFile(fileNameCSV, contentCSV, false); // write file
                                         contentTXT = taggedFileFormat(false);
-                                        writeToFile(fileNameTXT, contentTXT);
+                                        writeToFile(fileNameTXT, contentTXT, false);
+                                        returnHome();
                                         break;
                                 }
                             }
                         }
-                        Intent returnIntent = new Intent(CalculatePage.this, MainActivity.class);
-                        startActivity(returnIntent);
                         dialog.dismiss();
                     }
                 })
@@ -329,12 +328,10 @@ public class CalculatePage extends AppCompatActivity {
 
     public void save_calc(View view) {
         openDialog(false);
-        //intent go back to home
     }
 
     public void export(View view) {
         openDialog(true);
-        //intent go back to home
     }
 
     //Creates .txt table formatted to send / Share
@@ -414,6 +411,7 @@ public class CalculatePage extends AppCompatActivity {
                     .replace("<T \n", "").replace("T>", "")
                     .replace("<H", "").replace("H>", "")
                     .replace("<R", "").replace("R>", "");
+
         }
         return fileFormat.append(t1).append(t2).append(t3).toString();
     }
@@ -473,12 +471,15 @@ public class CalculatePage extends AppCompatActivity {
         return table;
     }
 
-    public void writeToFile(String fileName, String content) {
+    //Add Omit message when exporting
+    public void writeToFile(String fileName, String content, boolean omitMessage) {
         FileOutputStream writeScanner = null;
         try {
             writeScanner = openFileOutput(fileName, MODE_PRIVATE);
             writeScanner.write(content.getBytes());
-            Toast.makeText(this, "Saved to " + getFilesDir() + "/" + fileName, Toast.LENGTH_LONG).show();
+            if(!omitMessage) {
+                Toast.makeText(this, "Saved to " + getFilesDir() + "/" + fileName, Toast.LENGTH_LONG).show();
+            }
         } catch (FileNotFoundException e) { // open file exception
             e.printStackTrace();
         } catch (IOException e) { // for write file exception
@@ -487,7 +488,6 @@ public class CalculatePage extends AppCompatActivity {
             if (writeScanner != null) {
                 try {
                     writeScanner.close();
-                    finish();// calculate page finish
                 } catch (IOException e) { // Trouble closing
                     e.printStackTrace();
                 }
@@ -502,11 +502,15 @@ public class CalculatePage extends AppCompatActivity {
         Uri path = FileProvider.getUriForFile(context, "com.example.Hydroseed.FileProvider", fileLocation);
         Intent fileIntent = new Intent(Intent.ACTION_SEND);
         fileIntent.setType("txt/csv");
-        fileIntent.putExtra(Intent.EXTRA_SUBJECT, "Calculation File: " + numbEditText.getText().toString() + " " + nameEditText.getText().toString());
+        fileIntent.putExtra(Intent.EXTRA_SUBJECT, "Calculation File: " + fileName);
         fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         fileIntent.putExtra(Intent.EXTRA_STREAM, path);
-        startActivity(Intent.createChooser(fileIntent, "send mail"));
-        this.deleteFile(fileName);
+        if(fileName.contains(".txt")){
+            startActivityForResult(Intent.createChooser(fileIntent, "send mail"), 1);
+        }
+        else if(fileName.contains(".csv")){
+            startActivityForResult(Intent.createChooser(fileIntent, "send mail"), 2);
+        }
     }
 
     public void shareFile(String fileNameCSV, String fileNameTXT) {
@@ -520,11 +524,52 @@ public class CalculatePage extends AppCompatActivity {
         ArrayList<Uri> files = new ArrayList<Uri>();
         files.add(path1);
         files.add(path2);
-        fileIntent.putExtra(Intent.EXTRA_SUBJECT, "Calculation File: " + numbEditText.getText().toString() + " " + nameEditText.getText().toString());
+        fileIntent.putExtra(Intent.EXTRA_SUBJECT, "Calculation Files: " + fileNameCSV + " " + fileNameTXT);
         fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         fileIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, files);
-        this.deleteFile(fileNameCSV);
-        this.deleteFile(fileNameTXT);
-        startActivity(Intent.createChooser(fileIntent, "send mail"));
+        startActivityForResult(Intent.createChooser(fileIntent, "send mail"), 3);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data != null){
+            StringBuilder sb = new StringBuilder();
+            sb.append(numbEditText.getText().toString());
+            if(!nameEditText.getText().toString().equals("")){
+                sb.append("_"+nameEditText.getText().toString());
+            }
+            sb.append(".txt");
+            String fileName = sb.toString();
+            switch (requestCode){
+                case 1:
+                    //TEXT File Format
+                    reformat(fileName);
+                    break;
+                case 2:
+                    //CSV File Format
+                    fileName = fileName.replace(".txt", ".csv");
+                    reformat(fileName);
+                    break;
+                case 3:
+                    //Both Files required
+                    reformat(fileName);
+                    fileName = fileName.replace(".txt", ".csv");
+                    reformat(fileName);
+                    break;
+            }
+            returnHome();
+        }
+    }
+
+    public void reformat(String fileName){
+        String content = taggedFileFormat(false);
+        writeToFile(fileName, content, false);
+    }
+
+    public void returnHome(){
+        finish();// calculate page finish
+        Intent returnIntent = new Intent(CalculatePage.this, MainActivity.class);
+        startActivity(returnIntent);
     }
 }
