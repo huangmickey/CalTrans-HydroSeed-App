@@ -104,26 +104,26 @@ public class CalculatePage extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.hydroSeed)).setText(calculation.toStringHydroSeedAmount());
         ((TextView) findViewById(R.id.hydroSeed_seed)).setText(calculation.toStringHydroSeedAmount_seed());
-        ((TextView) findViewById(R.id.hydroSeed_fiber)).setText(String.valueOf(fiberSeedCalc) + " lbs");
-        String hydroSeedAmount_fiber = String.format("%.2f lbs / acre", applicationRates[2]);
+        ((TextView) findViewById(R.id.hydroSeed_fiber)).setText(String.valueOf((int)fiberSeedCalc) + " lbs");
+        String hydroSeedAmount_fiber = String.format("%.2f lbs", applicationRates[2]);
         ((TextView) findViewById(R.id.textRate2)).setText(hydroSeedAmount_fiber);
         String hydroSeed_fertilizerBags = String.format("%d bag(s)", (int) bagsOfFertilizer);
         ((TextView) findViewById(R.id.hydroSeed_fertilizer)).setText(hydroSeed_fertilizerBags);
         ((TextView) findViewById(R.id.hydroSeed_additive)).setText(calculation.toStringHydroSeedAmount_additive());
 
         ((TextView) findViewById(R.id.hydroMulch)).setText(calculation.toStringHydroMulchAmount());
-        ((TextView) findViewById(R.id.hydroMulch_fiber)).setText(String.valueOf(fiberMulchCalc) + " lbs");
-        ((TextView) findViewById(R.id.hydroMulch_tackifier)).setText(String.valueOf(tackCalc) + " lbs");
+        ((TextView) findViewById(R.id.hydroMulch_fiber)).setText(String.valueOf((int)fiberMulchCalc) + " lbs");
+        ((TextView) findViewById(R.id.hydroMulch_tackifier)).setText(String.valueOf((int)tackCalc) + " lbs");
         String hydroMulchAmount_bags = String.format("%d tanks of size %d for %d bag(s)", (int) tanksNeeded, (int) tankSize, (int) bagsOfHydroMulch);
         ((TextView) findViewById(R.id.hydroMulch_tankNeeded)).setText(hydroMulchAmount_bags);
 
         String applicationRate0 = String.format("%.2f CY / acre", applicationRates[0]);
-        String applicationRate1 = String.format("%.2f lbs / acre", applicationRates[1]);
+        String applicationRate1 = String.format("%.2f lbs", applicationRates[1]);
         //String applicationRate2 = "" + applicationRates[2];
-        String applicationRate3 = String.format("%.2f lbs / acre", applicationRates[3]);
-        String applicationRate4 = String.format("%.2f lbs / acre", applicationRates[4]);
-        String applicationRate5 = String.format("%.2f lbs / acre", applicationRates[5]);
-        String applicationRate6 = String.format("%.2f lbs / acre", applicationRates[6]);
+        String applicationRate3 = String.format("%.2f lbs", applicationRates[3]);
+        String applicationRate4 = String.format("%.2f lbs", applicationRates[4]);
+        String applicationRate5 = String.format("%.2f lbs", applicationRates[5]);
+        String applicationRate6 = String.format("%.2f lbs", applicationRates[6]);
 
         ((TextView) findViewById(R.id.textRate0)).setText(applicationRate0);
         ((TextView) findViewById(R.id.textRate1)).setText(applicationRate1);
