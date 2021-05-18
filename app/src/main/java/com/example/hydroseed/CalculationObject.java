@@ -24,6 +24,13 @@ public class CalculationObject {
         
     }
 
+    public CalculationObject(double acres, int compostLayer, int hydroSeedLayer, int hydroMulchLayer) {
+        this.acres = acres;
+        this.compostLayer = compostLayer;
+        this.hydroSeedLayer = hydroSeedLayer;
+        this.hydroMulchLayer = hydroMulchLayer;
+    }
+
     public double getAcres() {
         return acres;
     }

@@ -9,7 +9,7 @@ public class Global {
     static final double ACRE_TO_SQFT = 43560;
 
     static final int historySize = 5;
-    public static List<CalculationObject> historyList = new ArrayList<>();
+    public static ArrayList<CalculationObject> historyList = new ArrayList<>();
 
 
     static double[] applicationRates = {270, 65, 1000, 1700, 60, 2500, 175};
