@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.hydroseed.DialogPopUpErrors.DialogPopUpAcres;
+import com.example.hydroseed.DialogPopUpErrors.DialogPopUpEmpty;
+import com.example.hydroseed.DialogPopUpErrors.DialogPopUpSqft;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class CalculateFragment extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {

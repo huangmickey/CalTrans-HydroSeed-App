@@ -10,25 +10,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import static com.example.hydroseed.Global.ACRE_TO_SQFT;
 import static com.example.hydroseed.Global.applicationRates;
-import static com.example.hydroseed.Global.tankSize;
 
 public class CalculatePage extends AppCompatActivity {
     private static String projectName = "";
@@ -279,11 +273,11 @@ public class CalculatePage extends AppCompatActivity {
             char[] charArr = numberRef.toCharArray();
             while (!isNumberRefValid) {
                 if ((charArr[0] >= '2') || charArr[0] == '-') {
-                    errorMessageNumberRef.append("First two entries must be digits and between 1-12");
+                    errorMessageNumberRef.append("First two entries must be digits between 1-12");
                     break;
                 }
                 if (charArr[0] == '1' && charArr[1] >= '3' || charArr[1] == '-') {
-                    errorMessageNumberRef.append("First two entries must be digits and between 1-12");
+                    errorMessageNumberRef.append("First two entries must be digits between 1-12");
                     break;
                 }
                 if (charArr[0] == '0' && charArr[1] > '9') {
@@ -302,14 +296,29 @@ public class CalculatePage extends AppCompatActivity {
                 isNumberRefValid = true;
             }
         } else {
-            errorMessageNumberRef.append("Must be exactly 9 characters");
+            errorMessageNumberRef.append("Must be 9 characters");
         }
 
         if (isNumberRefValid && (projName.matches("^[a-zA-Z]*$"))) {
             return true;
         } else { // Error with User's File name Number-ProjectName
-            Toast.makeText(this, "Unaccepted Filename: " + numberRef +
-                    "\nFile Format: ##-######\n" + errorMessageNumberRef, Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+            builder1.setTitle(numberRef + "Unacceptable Project Number");
+            builder1.setMessage("The correct format is:\n01-###### to 12-######\n\n" + errorMessageNumberRef);
+            builder1.setCancelable(true);
+
+            builder1.setPositiveButton(
+                    "Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+            /*Toast.makeText(this, "Unaccepted Filename: " + numberRef +
+                    "\nFile Format: ##-######\n" + errorMessageNumberRef, Toast.LENGTH_LONG).show();*/
             return false;
         }
     }

@@ -1,4 +1,4 @@
-package com.example.hydroseed;
+package com.example.hydroseed.DialogPopUpErrors;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
