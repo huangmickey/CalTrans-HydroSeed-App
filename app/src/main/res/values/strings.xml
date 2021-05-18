@@ -62,7 +62,7 @@
     <string name="fertilizer2">Fertilizer</string>
     <string name="additive2">Additive</string>
     <string name="figure_1">Figure 1</string>
-    <string name="a_z">#A-######</string>
+    <string name="a_z">##-######</string>
     <string name="acres_sq_ft">Acres / Sq.ft</string>
     <string name="hydroseed">HydroSeed</string>
     <string name="refer_to_fig_1">Refer to Fig 1</string>
