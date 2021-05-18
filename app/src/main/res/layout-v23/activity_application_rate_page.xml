@@ -335,4 +335,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/getResults" />
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:translationY="-50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/TableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/getResults"
+        app:srcCompat="@drawable/caltrans_svg50opacity" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
