@@ -44,17 +44,9 @@ public class CalculatePage extends AppCompatActivity {
         nameEditText = findViewById(R.id.calc_name);//Project name Edit Text Field
         numbEditText = findViewById(R.id.calc_number);//Project name Edit Text Field
 
-        double input;
-        if (Global.userInputSqft != 0) {
-            input = Global.userInputSqft / ACRE_TO_SQFT;
-        } else {
-            input = Global.userInputAcres;
-        }
+        double input = Global.userInputAcres;
         //Retriever user input tank size from Global.java
         double tankSize = Global.tankSize;
-
-        //Round up input to highest fourth increment in decimals for user input in acres
-        input = Math.ceil(4 * input) / 4;
 
         //Calculations where we the input is multiplied with all of the DEFAULT application rates
         double inputAcresToCubic = input * ACRE_TO_SQFT;
