@@ -8,6 +8,18 @@
     android:background="#969696">
 
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/caltrans_svg50opacity" />
+
     <TableRow
         android:id="@+id/tableRow"
         android:layout_width="0dp"
@@ -71,25 +83,6 @@
             tools:ignore="RtlHardcoded" />
 
     </TableRow>
-
-    <EditText
-        android:id="@+id/acreageSource"
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:clickable="false"
-        android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="@string/enter_acreage"
-        android:importantForAutofill="no"
-        android:inputType="number|numberDecimal"
-        android:textColorHint="#000000"
-        android:textIsSelectable="false"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
@@ -353,14 +346,24 @@
         app:srcCompat="@drawable/ic_brightness_2_white_24dp"
         tools:ignore="VectorDrawableCompat" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+    <EditText
+        android:id="@+id/acreageSource"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:background="#d2d2d2"
+        android:clickable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="@string/enter_acreage"
+        android:importantForAutofill="no"
+        android:inputType="number|numberDecimal"
+        android:textColorHint="#000000"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableRow"
-        app:srcCompat="@drawable/caltrans_svg50opacity" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,5 @@
 package com.example.hydroseed;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,17 +8,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.Switch;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.hydroseed.DialogPopUpErrors.DialogPopUpAcres;
+import com.example.hydroseed.DialogPopUpErrors.DialogPopUpEmpty;
+import com.example.hydroseed.DialogPopUpErrors.DialogPopUpSqft;
 import com.google.android.material.switchmaterial.SwitchMaterial;
-
-import java.text.BreakIterator;
 
 public class CalculateFragment extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     Button button0, button1, button2, button3,
@@ -130,15 +125,43 @@ public class CalculateFragment extends Fragment implements View.OnClickListener,
 
                 if (!acres.equals("")) {
                     number = Double.parseDouble(acres);
+
+                    SwitchMaterial sqftSwitch = getView().findViewById(R.id.sqftSwitch);
+                    if (sqftSwitch.getText().toString().equals("Acres")) {
+                        Global.userInputAcres = number;
+                        if(number > 0 && number < 1000) {
+                            Intent toApplicationRatePage = new Intent(getContext(), ApplicationRatePage.class);
+                            startActivity(toApplicationRatePage);
+                        } else {
+                            DialogPopUpAcres popup = new DialogPopUpAcres();
+                            popup.show(requireActivity().getSupportFragmentManager(), "");
+                        }
+
+
+                    } else {
+                        Global.userInputSqft = number;
+                        if(number > 0 && number < 43560000) {
+                            Intent toApplicationRatePage = new Intent(getContext(), ApplicationRatePage.class);
+                            startActivity(toApplicationRatePage);
+                        } else {
+                            DialogPopUpSqft popup = new DialogPopUpSqft();
+                            popup.show(requireActivity().getSupportFragmentManager(), "");
+                        }
+                    }
+
+                } else {
+                    DialogPopUpEmpty popup = new DialogPopUpEmpty();
+                    popup.show(requireActivity().getSupportFragmentManager(), "");
                 }
 
-                if (number > 0) {
-                    SwitchMaterial switchTankSize = getView().findViewById(R.id.tankSwitch);
-                    if (switchTankSize.getText().toString().equals("1500")) {
-                        Global.tankSize = 1500;
-                    } else {
-                        Global.tankSize = 3000;
-                    }
+                SwitchMaterial switchTankSize = getView().findViewById(R.id.tankSwitch);
+                if (switchTankSize.getText().toString().equals("1500")) {
+                    Global.tankSize = 1500;
+                } else {
+                    Global.tankSize = 3000;
+                }
+                break;
+                /*if (number > 0) {
 
                     SwitchMaterial sqftSwitch = getView().findViewById(R.id.sqftSwitch);
                     if (sqftSwitch.getText().toString().equals("Acres")) {
@@ -150,10 +173,9 @@ public class CalculateFragment extends Fragment implements View.OnClickListener,
                     startActivity(toApplicationRatePage);
 
                 } else {
-                    CharSequence text = "Error! Please enter a valid number starting from 1";
+                    CharSequence text = "Error! Please enter a valid input greater than 0";
                     Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
-                }
-                break;
+                }*/
         }
     }
 

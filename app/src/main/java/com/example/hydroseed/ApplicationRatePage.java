@@ -6,16 +6,33 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import static com.example.hydroseed.Global.ACRE_TO_SQFT;
 
 public class ApplicationRatePage extends AppCompatActivity {
     String customRate;
     EditText customRateEditText;
-
+    TextView userInput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application_rate_page);
         setApplicationRateHint();
+
+        //Round up input to highest fourth increment in decimals for user input in acres
+        double input;
+        if (Global.userInputSqft != 0) {
+            input = Global.userInputSqft / 43560.0;
+        } else {
+            input = Global.userInputAcres;
+        }
+
+        input = Math.ceil(4 * input) / 4;
+        Global.userInputAcres = input;
+        //Set acres and sqft text for header
+        userInput = findViewById(R.id.userInput);
+        userInput.setText(input + " acres or " + input*43560 + " sqft");
     }
 
     public void goToCalculatePage(View view) {
