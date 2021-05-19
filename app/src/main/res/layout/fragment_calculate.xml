@@ -114,6 +114,7 @@
         android:id="@+id/calculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="@drawable/button_background"
         android:shadowColor="#A8A8A8"
         android:shadowDx="0"
@@ -333,33 +334,22 @@
         </TableRow>
     </TableLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginBottom="12dp"
-        app:backgroundTint="#56ACAB"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_brightness_2_white_24dp"
-        tools:ignore="VectorDrawableCompat" />
-
     <EditText
         android:id="@+id/acreageSource"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="124dp"
-        android:background="#d2d2d2"
+        android:background="#202222"
         android:clickable="false"
         android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
+        android:gravity="center"
         android:hint="@string/enter_acreage"
         android:importantForAutofill="no"
         android:inputType="number|numberDecimal"
-        android:textColorHint="#000000"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:textIsSelectable="false"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

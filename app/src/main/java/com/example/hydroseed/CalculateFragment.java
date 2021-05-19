@@ -1,5 +1,6 @@
 package com.example.hydroseed;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.hydroseed.DialogPopUpErrors.DialogPopUpAcres;
 import com.example.hydroseed.DialogPopUpErrors.DialogPopUpEmpty;
 import com.example.hydroseed.DialogPopUpErrors.DialogPopUpSqft;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class CalculateFragment extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
@@ -23,7 +25,6 @@ public class CalculateFragment extends Fragment implements View.OnClickListener,
             button9, button10, buttonC, history, calculate;
     //SwitchMaterial switchSquareFoot, switchTankSize;
     EditText editText;
-
     public CalculateFragment() {
         // Required empty public constructor
     }
@@ -66,6 +67,7 @@ public class CalculateFragment extends Fragment implements View.OnClickListener,
         sqftSwitch.setOnCheckedChangeListener(this);
         tankSwitch.setOnCheckedChangeListener(this);
         calculate.setOnClickListener(this);
+
         return view;
     }
 
@@ -74,6 +76,8 @@ public class CalculateFragment extends Fragment implements View.OnClickListener,
         super.onResume();
         editText.setText("");
     }
+
+
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button0:
@@ -161,21 +165,7 @@ public class CalculateFragment extends Fragment implements View.OnClickListener,
                     Global.tankSize = 3000;
                 }
                 break;
-                /*if (number > 0) {
 
-                    SwitchMaterial sqftSwitch = getView().findViewById(R.id.sqftSwitch);
-                    if (sqftSwitch.getText().toString().equals("Acres")) {
-                        Global.userInputAcres = number;
-                    } else {
-                        Global.userInputSqft = number;
-                    }
-                    Intent toApplicationRatePage = new Intent(getContext(), ApplicationRatePage.class);
-                    startActivity(toApplicationRatePage);
-
-                } else {
-                    CharSequence text = "Error! Please enter a valid input greater than 0";
-                    Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
-                }*/
         }
     }
 
@@ -200,4 +190,6 @@ public class CalculateFragment extends Fragment implements View.OnClickListener,
                 break;
         }
     }
+
+
 }
