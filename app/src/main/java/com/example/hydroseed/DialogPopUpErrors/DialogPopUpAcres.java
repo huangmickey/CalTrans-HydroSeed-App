@@ -13,7 +13,7 @@ public class DialogPopUpAcres extends AppCompatDialogFragment {
     public Dialog onCreateDialog(Bundle saveInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         builder.setTitle("Error")
-                .setMessage("Please enter in an acres amount greater than 0 and less than 1000")
+                .setMessage("Please enter in an acre amount less than 1000")
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

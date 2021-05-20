@@ -14,8 +14,10 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.example.hydroseed.DialogPopUpErrors.DialogPopUpAcres;
+import com.example.hydroseed.DialogPopUpErrors.DialogPopUpAcresZero;
 import com.example.hydroseed.DialogPopUpErrors.DialogPopUpEmpty;
 import com.example.hydroseed.DialogPopUpErrors.DialogPopUpSqft;
+import com.example.hydroseed.DialogPopUpErrors.DialogPopUpSqftZero;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
@@ -133,23 +135,28 @@ public class CalculateFragment extends Fragment implements View.OnClickListener,
                     SwitchMaterial sqftSwitch = getView().findViewById(R.id.sqftSwitch);
                     if (sqftSwitch.getText().toString().equals("Acres")) {
                         Global.userInputAcres = number;
-                        if(number > 0 && number < 1000) {
-                            Intent toApplicationRatePage = new Intent(getContext(), ApplicationRatePage.class);
-                            startActivity(toApplicationRatePage);
-                        } else {
+                        if(number <= 0) {
+                            DialogPopUpAcresZero popup = new DialogPopUpAcresZero();
+                            popup.show(requireActivity().getSupportFragmentManager(), "");
+                        } else if(number > 1000) {
                             DialogPopUpAcres popup = new DialogPopUpAcres();
                             popup.show(requireActivity().getSupportFragmentManager(), "");
+                        } else {
+                            Intent toApplicationRatePage = new Intent(getContext(), ApplicationRatePage.class);
+                            startActivity(toApplicationRatePage);
                         }
-
 
                     } else {
                         Global.userInputSqft = number;
-                        if(number > 0 && number < 43560000) {
-                            Intent toApplicationRatePage = new Intent(getContext(), ApplicationRatePage.class);
-                            startActivity(toApplicationRatePage);
-                        } else {
+                        if(number <= 0) {
+                            DialogPopUpSqftZero popup = new DialogPopUpSqftZero();
+                            popup.show(requireActivity().getSupportFragmentManager(), "");
+                        } else if(number > 43560000) {
                             DialogPopUpSqft popup = new DialogPopUpSqft();
                             popup.show(requireActivity().getSupportFragmentManager(), "");
+                        } else {
+                            Intent toApplicationRatePage = new Intent(getContext(), ApplicationRatePage.class);
+                            startActivity(toApplicationRatePage);
                         }
                     }
 
