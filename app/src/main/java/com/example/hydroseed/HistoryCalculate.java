@@ -53,16 +53,6 @@ public class HistoryCalculate extends AppCompatActivity {
         //Store each calculation into an object with field variables as each 3 steps and the user input
         CalculationObject calculation = new CalculationObject(input, compostLayer, hydroSeedLayer, (int) seedCalc, (int) fertilizer, (int) endroAdditive, hydroMulchLayer, (int) tanksNeeded);
 
-        //Store each calculation object into the global history list/linked hash set if meets range requirements
-        if (Global.historyList.size() == 0) {
-            Global.historyList.add(0, calculation);
-        } else if (Global.historyList.size() < Global.historySize) {
-            Global.historyList.add(0, calculation);
-        } else {
-            Global.historyList.remove(4);
-            Global.historyList.add(0, calculation);
-        }
-
 
         //Displaying of the results of calculations from previous steps above
         String acreageAmount = String.format("%s or %d square foot", historyItem.toStringAcreageAmount(), (int) (input * ACRE_TO_SQFT));

@@ -30,10 +30,14 @@ public class History extends AppCompatActivity {
         ArrayList<CalculationObject> histList = new ArrayList<>();
         for (CalculationObject calculation : Global.historyList) {
             double acres = calculation.getAcres();
-            int compost = calculation.getCompostLayer();
-            int seed = calculation.getHydroSeedLayer();
-            int mulch = calculation.getHydroMulchLayer();
-            histList.add(new CalculationObject(acres,compost,seed,mulch,calculation.getLbsOfSeed(),calculation.getLbsOfAdditive()));
+            int compostLayer = calculation.getCompostLayer();
+            int hydroSeedLayer = calculation.getLbsOfSeed();
+            int lbsOfSeed = calculation.getLbsOfSeed();
+            int lbsOfFertilizer = calculation.getLbsOfFertilizer();
+            int lbsOfAdditive = calculation.getLbsOfAdditive();
+            int hydroMulchLayer = calculation.getHydroMulchLayer();
+            int tanksNeeded = calculation.getTanksNeeded();
+            histList.add(new CalculationObject(acres, compostLayer, hydroSeedLayer,lbsOfSeed,lbsOfFertilizer,lbsOfAdditive,hydroMulchLayer,tanksNeeded));
         }
 
         mRecyclerView = findViewById(R.id.historyRecycler);
