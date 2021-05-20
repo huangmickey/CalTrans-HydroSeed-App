@@ -33,7 +33,7 @@ public class History extends AppCompatActivity {
             int compost = calculation.getCompostLayer();
             int seed = calculation.getHydroSeedLayer();
             int mulch = calculation.getHydroMulchLayer();
-            histList.add(new CalculationObject(acres,compost,seed,mulch));
+            histList.add(new CalculationObject(acres,compost,seed,mulch,calculation.getLbsOfSeed(),calculation.getLbsOfAdditive()));
         }
 
         mRecyclerView = findViewById(R.id.historyRecycler);

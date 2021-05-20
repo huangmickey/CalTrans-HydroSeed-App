@@ -19,16 +19,6 @@ public class HistoryCalculate extends AppCompatActivity {
 
         Intent intent = getIntent();
         CalculationObject historyItem = intent.getParcelableExtra("hist");
-        double acreage = historyItem.getAcres();
-        int compostLayers = historyItem.getCompostLayer();
-        int hydroSeed = historyItem.getHydroSeedLayer();
-        int lbsOfSeed = historyItem.getLbsOfSeed();
-        int lbsOfFertilizer = historyItem.getLbsOfFertilizer();
-        int lbsOfAdditives = historyItem.getLbsOfAdditive();
-        int hydroMulch = historyItem.getHydroMulchLayer();
-        int hydroSeedLayers = historyItem.getHydroSeedLayer();
-
-
 
 
         double input = Global.userInputAcres;

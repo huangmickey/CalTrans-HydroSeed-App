@@ -29,11 +29,13 @@ public class CalculationObject implements Parcelable {
     }
 
 
-    public CalculationObject(double acres, int compostLayer, int hydroSeedLayer, int hydroMulchLayer) {
+    public CalculationObject(double acres, int compostLayer, int hydroSeedLayer, int hydroMulchLayer, int lbsOfSeed, int lbsOfAdditive) {
         this.acres = acres;
         this.compostLayer = compostLayer;
         this.hydroSeedLayer = hydroSeedLayer;
         this.hydroMulchLayer = hydroMulchLayer;
+        this.lbsOfSeed = lbsOfSeed;
+        this.lbsOfAdditive = lbsOfAdditive;
     }
 
     protected CalculationObject(Parcel in) {
