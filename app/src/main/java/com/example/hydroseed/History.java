@@ -18,7 +18,7 @@ import static com.example.hydroseed.Global.historyList;
 public class History extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private HistoryAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
 
@@ -30,10 +30,14 @@ public class History extends AppCompatActivity {
         ArrayList<CalculationObject> histList = new ArrayList<>();
         for (CalculationObject calculation : Global.historyList) {
             double acres = calculation.getAcres();
-            int compost = calculation.getCompostLayer();
-            int seed = calculation.getHydroSeedLayer();
-            int mulch = calculation.getHydroMulchLayer();
-            histList.add(new CalculationObject(acres,compost,seed,mulch));
+            int compostLayer = calculation.getCompostLayer();
+            int hydroSeedLayer = calculation.getLbsOfSeed();
+            int lbsOfSeed = calculation.getLbsOfSeed();
+            int lbsOfFertilizer = calculation.getLbsOfFertilizer();
+            int lbsOfAdditive = calculation.getLbsOfAdditive();
+            int hydroMulchLayer = calculation.getHydroMulchLayer();
+            int tanksNeeded = calculation.getTanksNeeded();
+            histList.add(new CalculationObject(acres, compostLayer, hydroSeedLayer,lbsOfSeed,lbsOfFertilizer,lbsOfAdditive,hydroMulchLayer,tanksNeeded));
         }
 
         mRecyclerView = findViewById(R.id.historyRecycler);
@@ -43,6 +47,15 @@ public class History extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new HistoryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(History.this, HistoryCalculate.class);
+                intent.putExtra("hist", histList.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
 

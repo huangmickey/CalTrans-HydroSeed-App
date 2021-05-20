@@ -18,6 +18,10 @@
             android:label="Application Rate"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".HistoryCalculate"
+            android:label="Calculation History"
+            android:parentActivityName=".History" />
+        <activity
             android:name=".CalculatePage"
             android:label="Calculated Results"
             android:parentActivityName=".ApplicationRatePage" />

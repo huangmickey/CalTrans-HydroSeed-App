@@ -4,14 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".History"
-    android:background="@drawable/caltrans_gray_nontransparent">
+    android:background="#969696"
+    tools:context=".History">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/caltrans_svg50opacity" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/historyRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="12dp"
-        />
+        android:padding="12dp" />
 
 </RelativeLayout>
