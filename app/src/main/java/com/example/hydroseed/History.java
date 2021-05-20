@@ -18,7 +18,7 @@ import static com.example.hydroseed.Global.historyList;
 public class History extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private HistoryAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
 
@@ -43,6 +43,15 @@ public class History extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new HistoryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(History.this, HistoryCalculate.class);
+                intent.putExtra("hist", histList.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
 

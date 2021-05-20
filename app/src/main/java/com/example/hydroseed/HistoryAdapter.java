@@ -12,6 +12,15 @@ import java.util.ArrayList;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
     private ArrayList<CalculationObject> mHistoryList;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     public static class HistoryViewHolder extends RecyclerView.ViewHolder {
         public TextView mAcreage;
@@ -20,12 +29,25 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         public TextView mMulchLayer;
 
 
-        public HistoryViewHolder(@NonNull View itemView) {
+        public HistoryViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             mAcreage = itemView.findViewById(R.id.hist1);
             mCompost = itemView.findViewById(R.id.hist2);
             mSeedLayer = itemView.findViewById(R.id.hist3);
             mMulchLayer = itemView.findViewById(R.id.hist4);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+
         }
     }
 
@@ -37,7 +59,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     @Override
     public HistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.history_item,parent,false);
-        HistoryViewHolder co = new HistoryViewHolder(v);
+        HistoryViewHolder co = new HistoryViewHolder(v, mListener);
         return co;
     }
 

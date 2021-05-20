@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#969696"
+    tools:context=".HistoryCalculate">
+
+    <!--Table for Area inputted-->
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="#535353">
+        <!--Area Input-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:background="#d2d2d2">
+
+            <TextView
+                android:id="@+id/acreage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/acres_sq_ft"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </TableRow>
+        <!--End Of Area Input-->
+    </TableLayout>
+    <!--End Area Input Table-->
+
+    <!--Table for Calculated Data Entry-->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginBottom="50dp"
+        android:stretchColumns="0,1,2">
+        <!--Header-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_column="0"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/materials"
+                android:textSize="16sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/input"
+                android:textSize="16sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/output"
+                android:textSize="16sp"
+                android:textStyle="bold|italic" />
+        </TableRow>
+        <!--End of Header-->
+        <!--Compost Layer -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/compost2"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textRate0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/ft_3_area_unit"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/compost"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/yards_3"
+                android:textColor="#0A43D1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </TableRow>
+        <!--End of Compost Layer-->
+        <!--Hydro Seed Layer-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/hydroseed"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/refer_to_fig_1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/hydroSeed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs"
+                android:textColor="#0A43D1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </TableRow>
+        <!--End of Hydro Seed Layer-->
+        <!--Hydro Seed Layer-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/hydro_mulch"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/hydroMulch_lbsPerAcre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/refer_to_fig_2"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/hydroMulch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs"
+                android:textColor="#0A43D1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </TableRow>
+    </TableLayout>
+    <!--End of Calculation Data-->
+
+    <!--Table for Hydro Seed Mixture Header-->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="196dp"
+        android:layout_marginBottom="50dp">
+        <!--Header-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/figure_1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </TableRow>
+        <!--Header-->
+    </TableLayout>
+    <!--End Of Header-->
+    <!--Table for Calculated Data Entry-->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginBottom="50dp"
+        android:stretchColumns="0,1,2">
+        <!--Header-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_column="0"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/materials"
+                android:textSize="16sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/amount"
+                android:textSize="16sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/rate"
+                android:textSize="16sp"
+                android:textStyle="bold|italic" />
+        </TableRow>
+        <!--End of Header-->
+        <!--Seed Layer -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/seed2"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/hydroSeed_seed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs"
+                android:textColor="#0A43D1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textRate1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs_area"
+                android:textSize="16sp" />
+        </TableRow>
+        <!--End of Seed Layer-->
+        <!--Fiber Layer-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/fiber2"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/hydroSeed_fiber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs"
+                android:textColor="#0A43D1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textRate2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs_area"
+                android:textSize="16sp" />
+        </TableRow>
+        <!--End of Fiber Layer-->
+        <!--Fertilizer Layer-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/fertilizer2"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/hydroSeed_fertilizer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/bags_50lbs"
+                android:textColor="#0A43D1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textRate3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs_area"
+                android:textSize="16sp" />
+        </TableRow>
+        <!--End of Fertilizer Layer-->
+        <!-- Additve Layer-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/additive2"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/hydroSeed_additive"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs"
+                android:textColor="#0A43D1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textRate4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs_area"
+                android:textSize="16sp" />
+        </TableRow>
+    </TableLayout>
+    <!--End of HydroSeed Mixture Data-->
+    <!--Table for Hydro Mulch Header-->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="346dp"
+        android:layout_marginBottom="50dp">
+        <!--Header-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/figure_2"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:lineHeight="10sp" />
+        </TableRow>
+        <!--End of Header-->
+    </TableLayout>
+    <!--Table for Calculated Data Entry-->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="370dp"
+        android:layout_marginBottom="50dp"
+        android:stretchColumns="0,1,2">
+        <!--Header-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_column="0"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/materials"
+                android:textSize="16sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/amount"
+                android:textSize="16sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/rate"
+                android:textSize="16sp"
+                android:textStyle="bold|italic" />
+        </TableRow>
+        <!--End of Header-->
+        <!--Tack Layer-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/fiber2"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/hydroMulch_fiber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs"
+                android:textColor="#0A43D1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textRate5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs_area"
+                android:textSize="16sp" />
+        </TableRow>
+        <!--End of Fiber Layer-->
+        <!--Tack Layer-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/tackifier2"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/hydroMulch_tackifier"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs"
+                android:textColor="#0A43D1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textRate6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:layout_margin="1dp"
+                android:background="#d2d2d2"
+                android:gravity="center"
+                android:text="@string/lbs_area"
+                android:textSize="16sp" />
+        </TableRow>
+        <!--End of Tackfier Layer-->
+        <!--Tack Layer-->
+    </TableLayout>
+    <!--End of Hydro Mulch Data-->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="440dp"
+        android:layout_marginBottom="50dp"
+        android:stretchColumns="0,1,2"
+        android:background="#969696"/>
+
+    <!--Table for User Data for File naming-->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginBottom="50dp"
+        android:stretchColumns="0,1"
+        android:background="#969696">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </TableLayout>
+    <!--End of Project Number-->
+    <!--End of User Data Field-->
+    <!--Table for Save Button  Data-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
